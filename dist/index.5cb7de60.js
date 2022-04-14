@@ -944,8 +944,9 @@ var _jsxRuntime = require("react/jsx-runtime");
 var _reactDom = require("react-dom");
 var _reactDomDefault = parcelHelpers.interopDefault(_reactDom);
 var _app = require("./App");
+var _appDefault = parcelHelpers.interopDefault(_app);
 const app = document.getElementById("app");
-_reactDomDefault.default.render(/*#__PURE__*/ _jsxRuntime.jsx(_app.App, {
+_reactDomDefault.default.render(/*#__PURE__*/ _jsxRuntime.jsx(_appDefault.default, {
     __source: {
         fileName: "src/index.js",
         lineNumber: 5
@@ -22725,29 +22726,28 @@ $parcel$ReactRefreshHelpers$013b.prelude(module);
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-// import MainView from "./components/main-view/main-view";
-// function App() {
-//   return (
-//     <div className="App">
-//       <MainView />
-//     </div>
-//   );
-// }
-// export default App;
-parcelHelpers.export(exports, "App", ()=>App
-);
 var _jsxRuntime = require("react/jsx-runtime");
+var _mainView = require("./components/main-view/main-view");
+var _mainViewDefault = parcelHelpers.interopDefault(_mainView);
 function App() {
-    return(/*#__PURE__*/ _jsxRuntime.jsx("h1", {
+    return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
+        className: "App",
         __source: {
             fileName: "src/App.js",
-            lineNumber: 15
+            lineNumber: 6
         },
         __self: this,
-        children: "Hello world!"
+        children: /*#__PURE__*/ _jsxRuntime.jsx(_mainViewDefault.default, {
+            __source: {
+                fileName: "src/App.js",
+                lineNumber: 7
+            },
+            __self: this
+        })
     }));
 }
 _c = App;
+exports.default = App;
 var _c;
 $RefreshReg$(_c, "App");
 
@@ -22756,7 +22756,137 @@ $RefreshReg$(_c, "App");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","@parcel/transformer-js/src/esmodule-helpers.js":"fTp9J","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"1PCZw"}],"fTp9J":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","./components/main-view/main-view":"2zHas","@parcel/transformer-js/src/esmodule-helpers.js":"fTp9J","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"1PCZw"}],"2zHas":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$35bf = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$35bf.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxRuntime = require("react/jsx-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _movieCard = require("../movie-card/movie-card");
+var _movieCardDefault = parcelHelpers.interopDefault(_movieCard);
+var _movieView = require("../movie-view/movie-view");
+var _movieViewDefault = parcelHelpers.interopDefault(_movieView);
+var _s = $RefreshSig$();
+const MainView = ()=>{
+    _s();
+    const [selectedMovie, setSelectedMovie] = _react.useState();
+    const [movies, setMovies] = _react.useState([
+        {
+            _id: 1,
+            Title: 'Inception',
+            Description: 'desc1...',
+            ImagePath: '...'
+        },
+        {
+            _id: 2,
+            Title: 'The Shawshank Redemption',
+            Description: 'desc2...',
+            ImagePath: '...'
+        },
+        {
+            _id: 3,
+            Title: 'Gladiator',
+            Description: 'desc3...',
+            ImagePath: '...'
+        }
+    ]);
+    const displayMovie = (movie)=>{
+        setSelectedMovie(movie);
+    };
+    const returnToMain = ()=>{
+        setSelectedMovie();
+    };
+    if (selectedMovie) return(/*#__PURE__*/ _jsxRuntime.jsx(_movieViewDefault.default, {
+        movie: selectedMovie,
+        returnToMain: returnToMain,
+        __source: {
+            fileName: "src/components/main-view/main-view.jsx",
+            lineNumber: 20
+        },
+        __self: undefined
+    }));
+    if (movies.length === 0) return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
+        className: "main-view",
+        __source: {
+            fileName: "src/components/main-view/main-view.jsx",
+            lineNumber: 22
+        },
+        __self: undefined,
+        children: "The list is empty!"
+    }));
+    return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
+        className: "main-view",
+        __source: {
+            fileName: "src/components/main-view/main-view.jsx",
+            lineNumber: 25
+        },
+        __self: undefined,
+        children: movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCardDefault.default, {
+                movie: movie,
+                displayMovie: displayMovie,
+                __source: {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 26
+                },
+                __self: undefined
+            }, movie._id)
+        )
+    }));
+};
+_s(MainView, "p10Ni41sSH5FyZeVpaoZOOODAmI=");
+_c = MainView;
+exports.default = MainView;
+var _c;
+$RefreshReg$(_c, "MainView");
+
+  $parcel$ReactRefreshHelpers$35bf.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","../movie-card/movie-card":"6EiBJ","../movie-view/movie-view":"ikZdr","@parcel/transformer-js/src/esmodule-helpers.js":"fTp9J","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"1PCZw"}],"6EiBJ":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$4249 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$4249.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxRuntime = require("react/jsx-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+const MovieCard = (props)=>{
+    const { displayMovie , movie  } = props;
+    return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
+        className: "movie-card",
+        onClick: ()=>displayMovie(movie)
+        ,
+        __source: {
+            fileName: "src/components/movie-card/movie-card.jsx",
+            lineNumber: 6
+        },
+        __self: undefined,
+        children: movie.Title
+    }));
+};
+_c = MovieCard;
+exports.default = MovieCard;
+var _c;
+$RefreshReg$(_c, "MovieCard");
+
+  $parcel$ReactRefreshHelpers$4249.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"fTp9J","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"1PCZw"}],"fTp9J":[function(require,module,exports) {
 exports.interopDefault = function(a) {
     return a && a.__esModule ? a : {
         default: a
@@ -22908,6 +23038,124 @@ function registerExportsForReactRefresh(module) {
     }
 }
 
-},{"react-refresh/runtime":"2sbC7"}]},["7YaWl","di3Ha","6cF5V"], "6cF5V", "parcelRequireaec4")
+},{"react-refresh/runtime":"2sbC7"}],"ikZdr":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$3741 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$3741.prelude(module);
 
-//# sourceMappingURL=index.js.map
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxRuntime = require("react/jsx-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+const MovieView = (props)=>{
+    const { movie , returnToMain  } = props;
+    return(/*#__PURE__*/ _jsxRuntime.jsxs(_jsxRuntime.Fragment, {
+        children: [
+            /*#__PURE__*/ _jsxRuntime.jsx("div", {
+                className: "movie-view",
+                __source: {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 7
+                },
+                __self: undefined,
+                children: /*#__PURE__*/ _jsxRuntime.jsx("div", {
+                    className: "movie-poster",
+                    __source: {
+                        fileName: "src/components/movie-view/movie-view.jsx",
+                        lineNumber: 8
+                    },
+                    __self: undefined,
+                    children: /*#__PURE__*/ _jsxRuntime.jsx("img", {
+                        src: "{movie.ImagePath}",
+                        __source: {
+                            fileName: "src/components/movie-view/movie-view.jsx",
+                            lineNumber: 9
+                        },
+                        __self: undefined
+                    })
+                })
+            }),
+            /*#__PURE__*/ _jsxRuntime.jsxs("div", {
+                className: "movie-title",
+                __source: {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 12
+                },
+                __self: undefined,
+                children: [
+                    /*#__PURE__*/ _jsxRuntime.jsx("span", {
+                        className: "label",
+                        __source: {
+                            fileName: "src/components/movie-view/movie-view.jsx",
+                            lineNumber: 13
+                        },
+                        __self: undefined,
+                        children: "Title: "
+                    }),
+                    /*#__PURE__*/ _jsxRuntime.jsx("span", {
+                        className: "value",
+                        __source: {
+                            fileName: "src/components/movie-view/movie-view.jsx",
+                            lineNumber: 14
+                        },
+                        __self: undefined,
+                        children: movie.Title
+                    })
+                ]
+            }),
+            /*#__PURE__*/ _jsxRuntime.jsxs("div", {
+                className: "movie-description",
+                __source: {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 17
+                },
+                __self: undefined,
+                children: [
+                    /*#__PURE__*/ _jsxRuntime.jsx("span", {
+                        className: "label",
+                        __source: {
+                            fileName: "src/components/movie-view/movie-view.jsx",
+                            lineNumber: 18
+                        },
+                        __self: undefined,
+                        children: "Description: "
+                    }),
+                    /*#__PURE__*/ _jsxRuntime.jsx("span", {
+                        className: "value",
+                        __source: {
+                            fileName: "src/components/movie-view/movie-view.jsx",
+                            lineNumber: 19
+                        },
+                        __self: undefined,
+                        children: movie.Description
+                    })
+                ]
+            }),
+            /*#__PURE__*/ _jsxRuntime.jsx("button", {
+                onClick: returnToMain,
+                __source: {
+                    fileName: "src/components/movie-view/movie-view.jsx",
+                    lineNumber: 21
+                },
+                __self: undefined,
+                children: "Back"
+            })
+        ]
+    }));
+};
+_c = MovieView;
+exports.default = MovieView;
+var _c;
+$RefreshReg$(_c, "MovieView");
+
+  $parcel$ReactRefreshHelpers$3741.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"fTp9J","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"1PCZw"}]},["7YaWl","di3Ha","6cF5V"], "6cF5V", "parcelRequireaec4")
+
+//# sourceMappingURL=index.5cb7de60.js.map
