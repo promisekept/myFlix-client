@@ -37,24 +37,50 @@ const MainView = () => {
     setUser(u);
   };
   /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
-
-  if (!user) return <Row><LoginView className="main-view" onLoggedIn={onLoggedIn} /></Row>;
+  //User not logged in
+  if (!user)
+    return (
+      <Row className="justify-content-md-center">
+        <Col>
+          <LoginView className="main-view" onLoggedIn={onLoggedIn} />
+        </Col>
+      </Row>
+    );
+  //Show the selected movie
   else if (selectedMovie)
-    return <Row><Col md={8}><MovieView className="main-view" movie={selectedMovie} returnToMain={returnToMain} /></Col></Row>;
+    return (
+      <Row className="justify-content-md-center">
+        <Col md={8}>
+          <MovieView
+            className="main-view"
+            movie={selectedMovie}
+            returnToMain={returnToMain}
+          />
+        </Col>
+      </Row>
+    );
+  //No movies fetched
   else if (movies.length === 0)
-    return <Row><div className="main-view">The list is empty!</div></Row>;
+    return (
+      <Row className="justify-content-md-center">
+        <div className="main-view">The list is empty!</div>
+      </Row>
+    );
+  //Show a list of movies
   else
     return (
-      <Row>
-        <div className="main-view">
-          {movies.map((movie) => (
-            <MovieCard
-              key={movie._id}
-              movie={movie}
-              displayMovie={displayMovie}
-            />
-          ))}
-        </div>
+      <Row className="justify-content-md-center bg-danger">
+        <Col md={3}>
+          <div className="main-view">
+            {movies.map((movie) => (
+              <MovieCard
+                key={movie._id}
+                movie={movie}
+                displayMovie={displayMovie}
+              />
+            ))}
+          </div>
+        </Col>
       </Row>
     );
 };

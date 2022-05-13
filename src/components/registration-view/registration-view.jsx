@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
+import { Form } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const RegistrationView = ({ handleUnregistered }) => {
   const [newUsername, setNewUsername] = useState("");
@@ -14,51 +17,43 @@ const RegistrationView = ({ handleUnregistered }) => {
   };
 
   return (
-    <form>
-      <label>
-        New User:{" "}
-        <input
+    <Form>
+      <Form.Group controlId="formNewUser">
+        <Form.Label>New User:</Form.Label>
+        <Form.Control
           type="text"
           value={newUsername}
           onChange={(e) => setNewUsername(e.target.value)}
         />
-      </label>
-      <br />
-      <br />
-      <label>
-        New Password:{" "}
-        <input
+      </Form.Group>
+      <Form.Group controlId="formNewPassword">
+        <Form.Label>New Password:</Form.Label>
+        <Form.Control
           type="password"
           value={newPassword}
           onChange={(e) => setNewPassword(e.target.value)}
         />
-      </label>
-      <br />
-      <br />
-      <label>
-        Email:{" "}
-        <input
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Email:</Form.Label>
+        <Form.Control
           type="email"
           value={newEmail}
           onChange={(e) => setNewEmail(e.target.value)}
         />
-      </label>
-      <br />
-      <br />
-      <label>
-        Birthday:{" "}
-        <input
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Birthday:</Form.Label>
+        <Form.Control
           type="date"
           value={newBirthday}
           onChange={(e) => setNewBirthday(e.target.value)}
         />
-        <br />
-        <br />
-      </label>
-      <button type="submit" onClick={handleSubmit}>
+      </Form.Group>
+      <Button type="submit" onClick={handleSubmit}>
         Submit
-      </button>
-    </form>
+      </Button>
+    </Form>
   );
 };
 RegistrationView.propTypes = {

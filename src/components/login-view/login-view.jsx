@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import RegView from "../registration-view/registration-view";
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -26,9 +26,7 @@ const LoginView = ({ onLoggedIn }) => {
       <>
         <Form>
           <Form.Group controlId="formUsername">
-            <Form.Label>
-              Username:
-            </Form.Label>
+            <Form.Label>Username:</Form.Label>
             <Form.Control
               type="text"
               value={username}
@@ -38,9 +36,7 @@ const LoginView = ({ onLoggedIn }) => {
             />
           </Form.Group>
           <Form.Group controlId="formPassword">
-            <Form.Label>
-              Password:
-            </Form.Label>
+            <Form.Label>Password:</Form.Label>
             <Form.Control
               type="password"
               value={password}
@@ -51,7 +47,7 @@ const LoginView = ({ onLoggedIn }) => {
             Submit
           </Button>
         </Form>
-        <p style={{ color: "red" }} onClick={handleUnregistered}>
+        <p className="text-danger" onClick={handleUnregistered}>
           Not registered? Click here!
         </p>
       </>
