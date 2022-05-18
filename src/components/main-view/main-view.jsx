@@ -6,6 +6,7 @@ import MovieView from "../movie-view/movie-view";
 import LoginView from "../login-view/login-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 const MainView = () => {
   // Initial state is set to null
@@ -26,6 +27,8 @@ const MainView = () => {
     []
   );
 
+  useEffect(() => setUser(localStorage.getItem("user")), []);
+
   /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
   const displayMovie = (movie) => {
     setSelectedMovie(movie);
@@ -33,9 +36,35 @@ const MainView = () => {
   const returnToMain = () => {
     setSelectedMovie();
   };
-  const onLoggedIn = (u) => {
-    setUser(u);
+
+  const getMovies = (token) => {
+    axios
+      .get("https://herokumovieapi.herokuapp.com/movies", {
+        headers: { Authorization: `Bearer ${token}` },
+      })
+      .then((response) => {
+        setMovies(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
+
+  const onLoggedIn = (authData) => {
+    // console.log(`Auth Data: ${authData}`);
+    console.log(authData);
+    setUser(authData);
+    localStorage.setItem("token", authData.token);
+    localStorage.setItem("user", authData.user.Username);
+    getMovies(authData.token);
+  };
+
+  const onLoggedOut = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    setUser(null);
+  };
+
   /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
   //User not logged in
   if (!user)
@@ -69,19 +98,22 @@ const MainView = () => {
   //Show a list of movies
   else
     return (
-      <Row className="justify-content-md-center bg-danger">
-        <Col md={3}>
-          <div className="main-view">
-            {movies.map((movie) => (
-              <MovieCard
-                key={movie._id}
-                movie={movie}
-                displayMovie={displayMovie}
-              />
-            ))}
-          </div>
-        </Col>
-      </Row>
+      <>
+        <Button onClick={onLoggedOut}>Log out</Button>
+        <Row className="justify-content-md-center bg-danger">
+          <Col md={3}>
+            <div className="main-view">
+              {movies.map((movie) => (
+                <MovieCard
+                  key={movie._id}
+                  movie={movie}
+                  displayMovie={displayMovie}
+                />
+              ))}
+            </div>
+          </Col>
+        </Row>
+      </>
     );
 };
 

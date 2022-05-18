@@ -22692,6 +22692,8 @@ var _row = require("react-bootstrap/Row");
 var _rowDefault = parcelHelpers.interopDefault(_row);
 var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
@@ -22705,14 +22707,37 @@ const MainView = ()=>{
             console.log(error);
         })
     , []);
+    _react.useEffect(()=>setUser(localStorage.getItem("user"))
+    , []);
     /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/ const displayMovie = (movie)=>{
         setSelectedMovie(movie);
     };
     const returnToMain = ()=>{
         setSelectedMovie();
     };
-    const onLoggedIn = (u)=>{
-        setUser(u);
+    const getMovies = (token)=>{
+        _axiosDefault.default.get("https://herokumovieapi.herokuapp.com/movies", {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).then((response)=>{
+            setMovies(response.data);
+        }).catch(function(error) {
+            console.log(error);
+        });
+    };
+    const onLoggedIn = (authData)=>{
+        // console.log(`Auth Data: ${authData}`);
+        console.log(authData);
+        setUser(authData);
+        localStorage.setItem("token", authData.token);
+        localStorage.setItem("user", authData.user.Username);
+        getMovies(authData.token);
+    };
+    const onLoggedOut = ()=>{
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        setUser(null);
     };
     /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/ //User not logged in
     if (!user) return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_rowDefault.default, {
@@ -22721,74 +22746,6 @@ const MainView = ()=>{
             children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_loginViewDefault.default, {
                 className: "main-view",
                 onLoggedIn: onLoggedIn
-            }, void 0, false, {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 45,
-                columnNumber: 11
-            }, undefined)
-        }, void 0, false, {
-            fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 44,
-            columnNumber: 9
-        }, undefined)
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 43,
-        columnNumber: 7
-    }, undefined);
-    else if (selectedMovie) return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_rowDefault.default, {
-        className: "justify-content-md-center",
-        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_colDefault.default, {
-            md: 8,
-            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_movieViewDefault.default, {
-                className: "main-view",
-                movie: selectedMovie,
-                returnToMain: returnToMain
-            }, void 0, false, {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 54,
-                columnNumber: 11
-            }, undefined)
-        }, void 0, false, {
-            fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 53,
-            columnNumber: 9
-        }, undefined)
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 52,
-        columnNumber: 7
-    }, undefined);
-    else if (movies.length === 0) return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_rowDefault.default, {
-        className: "justify-content-md-center",
-        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-            className: "main-view",
-            children: "The list is empty!"
-        }, void 0, false, {
-            fileName: "src/components/main-view/main-view.jsx",
-            lineNumber: 66,
-            columnNumber: 9
-        }, undefined)
-    }, void 0, false, {
-        fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 65,
-        columnNumber: 7
-    }, undefined);
-    else return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_rowDefault.default, {
-        className: "justify-content-md-center bg-danger",
-        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_colDefault.default, {
-            md: 3,
-            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-                className: "main-view",
-                children: movies.map((movie)=>/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_movieCardDefault.default, {
-                        movie: movie,
-                        displayMovie: displayMovie
-                    }, movie._id, false, {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 76,
-                        columnNumber: 15
-                    }, undefined)
-                )
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
                 lineNumber: 74,
@@ -22804,8 +22761,88 @@ const MainView = ()=>{
         lineNumber: 72,
         columnNumber: 7
     }, undefined);
+    else if (selectedMovie) return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_rowDefault.default, {
+        className: "justify-content-md-center",
+        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_colDefault.default, {
+            md: 8,
+            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_movieViewDefault.default, {
+                className: "main-view",
+                movie: selectedMovie,
+                returnToMain: returnToMain
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 83,
+                columnNumber: 11
+            }, undefined)
+        }, void 0, false, {
+            fileName: "src/components/main-view/main-view.jsx",
+            lineNumber: 82,
+            columnNumber: 9
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 81,
+        columnNumber: 7
+    }, undefined);
+    else if (movies.length === 0) return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_rowDefault.default, {
+        className: "justify-content-md-center",
+        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+            className: "main-view",
+            children: "The list is empty!"
+        }, void 0, false, {
+            fileName: "src/components/main-view/main-view.jsx",
+            lineNumber: 95,
+            columnNumber: 9
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/main-view/main-view.jsx",
+        lineNumber: 94,
+        columnNumber: 7
+    }, undefined);
+    else return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
+        children: [
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_buttonDefault.default, {
+                onClick: onLoggedOut,
+                children: "Log out"
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 102,
+                columnNumber: 9
+            }, undefined),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_rowDefault.default, {
+                className: "justify-content-md-center bg-danger",
+                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_colDefault.default, {
+                    md: 3,
+                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+                        className: "main-view",
+                        children: movies.map((movie)=>/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_movieCardDefault.default, {
+                                movie: movie,
+                                displayMovie: displayMovie
+                            }, movie._id, false, {
+                                fileName: "src/components/main-view/main-view.jsx",
+                                lineNumber: 107,
+                                columnNumber: 17
+                            }, undefined)
+                        )
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 105,
+                        columnNumber: 13
+                    }, undefined)
+                }, void 0, false, {
+                    fileName: "src/components/main-view/main-view.jsx",
+                    lineNumber: 104,
+                    columnNumber: 11
+                }, undefined)
+            }, void 0, false, {
+                fileName: "src/components/main-view/main-view.jsx",
+                lineNumber: 103,
+                columnNumber: 9
+            }, undefined)
+        ]
+    }, void 0, true);
 };
-_s(MainView, "UmmSWE/WrzkJLYij8NW8eMERryg=");
+_s(MainView, "3ArVzTYr4HuPc5uHMMtmxEjmNfI=");
 _c = MainView;
 exports.default = MainView;
 var _c;
@@ -22816,7 +22853,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"jo6P5":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap/Button":"aPzUt"}],"jo6P5":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {
@@ -28441,6 +28478,8 @@ var _form = require("react-bootstrap/Form");
 var _formDefault = parcelHelpers.interopDefault(_form);
 var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _s = $RefreshSig$();
 const LoginView = ({ onLoggedIn  })=>{
     _s();
@@ -28449,9 +28488,15 @@ const LoginView = ({ onLoggedIn  })=>{
     const [registered, setRegistered] = _react.useState(true);
     const handleSubmit = (e)=>{
         e.preventDefault();
-        console.log(username, password);
-        onLoggedIn(username);
-    /* Send a request to the server for authentication */ /* then call props.onLoggedIn(username) */ // props.onLoggedIn(username);
+        // onLoggedIn(username);
+        /* Send a request to the server for authentication */ _axiosDefault.default.post("https://herokumovieapi.herokuapp.com/login", {
+            Username: username,
+            Password: password
+        }).then((response)=>{
+            onLoggedIn(response.data);
+        }).catch((e)=>{
+            console.log("no such user");
+        });
     };
     const handleUnregistered = ()=>{
         setRegistered(!registered);
@@ -28467,7 +28512,7 @@ const LoginView = ({ onLoggedIn  })=>{
                                 children: "Username:"
                             }, void 0, false, {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 29,
+                                lineNumber: 38,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Control, {
@@ -28478,13 +28523,13 @@ const LoginView = ({ onLoggedIn  })=>{
                                 }
                             }, void 0, false, {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 30,
+                                lineNumber: 39,
                                 columnNumber: 13
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 28,
+                        lineNumber: 37,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Group, {
@@ -28494,7 +28539,7 @@ const LoginView = ({ onLoggedIn  })=>{
                                 children: "Password:"
                             }, void 0, false, {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 39,
+                                lineNumber: 48,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Control, {
@@ -28503,13 +28548,13 @@ const LoginView = ({ onLoggedIn  })=>{
                                 onChange: (e)=>setPassword(e.target.value)
                             }, void 0, false, {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 40,
+                                lineNumber: 49,
                                 columnNumber: 13
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 38,
+                        lineNumber: 47,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_buttonDefault.default, {
@@ -28519,13 +28564,13 @@ const LoginView = ({ onLoggedIn  })=>{
                         children: "Submit"
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 46,
+                        lineNumber: 55,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 27,
+                lineNumber: 36,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
@@ -28534,7 +28579,7 @@ const LoginView = ({ onLoggedIn  })=>{
                 children: "Not registered? Click here!"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 50,
+                lineNumber: 59,
                 columnNumber: 9
             }, undefined)
         ]
@@ -28543,7 +28588,7 @@ const LoginView = ({ onLoggedIn  })=>{
         handleUnregistered: handleUnregistered
     }, void 0, false, {
         fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 56,
+        lineNumber: 65,
         columnNumber: 12
     }, undefined);
 };
@@ -28561,7 +28606,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","../registration-view/registration-view":"3U8r7","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"3U8r7":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","../registration-view/registration-view":"3U8r7","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5"}],"3U8r7":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$789c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;

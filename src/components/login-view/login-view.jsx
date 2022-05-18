@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import RegView from "../registration-view/registration-view";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 
 const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -11,11 +12,19 @@ const LoginView = ({ onLoggedIn }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
-    onLoggedIn(username);
+    // onLoggedIn(username);
     /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
-    // props.onLoggedIn(username);
+    axios
+      .post("https://herokumovieapi.herokuapp.com/login", {
+        Username: username,
+        Password: password,
+      })
+      .then((response) => {
+        onLoggedIn(response.data);
+      })
+      .catch((e) => {
+        console.log("no such user");
+      });
   };
 
   const handleUnregistered = () => {
