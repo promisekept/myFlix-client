@@ -22701,12 +22701,18 @@ const MainView = ()=>{
     const [selectedMovie, setSelectedMovie] = _react.useState();
     const [movies, setMovies] = _react.useState([]);
     const [user, setUser] = _react.useState(null);
-    _react.useEffect(()=>_axiosDefault.default.get("https://herokumovieapi.herokuapp.com/movies").then((response)=>{
-            setMovies(response.data);
-        }).catch((error)=>{
-            console.log(error);
-        })
-    , []);
+    // useEffect(
+    //   () =>
+    //     axios
+    //       .get("https://herokumovieapi.herokuapp.com/movies")
+    //       .then((response) => {
+    //         setMovies(response.data);
+    //       })
+    //       .catch((error) => {
+    //         console.log(error);
+    //       }),
+    //   []
+    // );
     _react.useEffect(()=>setUser(localStorage.getItem("user"))
     , []);
     /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/ const displayMovie = (movie)=>{
@@ -22842,7 +22848,7 @@ const MainView = ()=>{
         ]
     }, void 0, true);
 };
-_s(MainView, "3ArVzTYr4HuPc5uHMMtmxEjmNfI=");
+_s(MainView, "UmmSWE/WrzkJLYij8NW8eMERryg=");
 _c = MainView;
 exports.default = MainView;
 var _c;
@@ -28485,11 +28491,31 @@ const LoginView = ({ onLoggedIn  })=>{
     _s();
     const [username, setUsername] = _react.useState("");
     const [password, setPassword] = _react.useState("");
+    const [usernameErr, setUsernameErr] = _react.useState("");
+    const [passwordErr, setPasswordErr] = _react.useState("");
     const [registered, setRegistered] = _react.useState(true);
     const handleSubmit = (e)=>{
         e.preventDefault();
         // onLoggedIn(username);
-        /* Send a request to the server for authentication */ _axiosDefault.default.post("https://herokumovieapi.herokuapp.com/login", {
+        /* Send a request to the server for authentication */ if (!username) setUsernameErr("Username Required");
+        else if (username.length < 5) setUsernameErr("Username must be at least 5 characters long");
+        else if (!password) setPasswordErr(/*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
+            className: "text-danger",
+            children: "Password Required"
+        }, void 0, false, {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 25,
+            columnNumber: 22
+        }, undefined));
+        else if (password.length < 4) setPasswordErr(/*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
+            className: "text-danger",
+            children: "Password must be at least 4 characters long"
+        }, void 0, false, {
+            fileName: "src/components/login-view/login-view.jsx",
+            lineNumber: 28,
+            columnNumber: 9
+        }, undefined));
+        else _axiosDefault.default.post("https://herokumovieapi.herokuapp.com/login", {
             Username: username,
             Password: password
         }).then((response)=>{
@@ -28512,7 +28538,7 @@ const LoginView = ({ onLoggedIn  })=>{
                                 children: "Username:"
                             }, void 0, false, {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 38,
+                                lineNumber: 55,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Control, {
@@ -28523,13 +28549,21 @@ const LoginView = ({ onLoggedIn  })=>{
                                 }
                             }, void 0, false, {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 39,
+                                lineNumber: 56,
                                 columnNumber: 13
+                            }, undefined),
+                            usernameErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
+                                className: "text-danger",
+                                children: usernameErr
+                            }, void 0, false, {
+                                fileName: "src/components/login-view/login-view.jsx",
+                                lineNumber: 63,
+                                columnNumber: 29
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 37,
+                        lineNumber: 54,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Group, {
@@ -28539,7 +28573,7 @@ const LoginView = ({ onLoggedIn  })=>{
                                 children: "Password:"
                             }, void 0, false, {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 48,
+                                lineNumber: 66,
                                 columnNumber: 13
                             }, undefined),
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Control, {
@@ -28548,13 +28582,21 @@ const LoginView = ({ onLoggedIn  })=>{
                                 onChange: (e)=>setPassword(e.target.value)
                             }, void 0, false, {
                                 fileName: "src/components/login-view/login-view.jsx",
-                                lineNumber: 49,
+                                lineNumber: 67,
                                 columnNumber: 13
+                            }, undefined),
+                            passwordErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
+                                className: "text-danger",
+                                children: passwordErr
+                            }, void 0, false, {
+                                fileName: "src/components/login-view/login-view.jsx",
+                                lineNumber: 72,
+                                columnNumber: 29
                             }, undefined)
                         ]
                     }, void 0, true, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 47,
+                        lineNumber: 65,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_buttonDefault.default, {
@@ -28564,13 +28606,13 @@ const LoginView = ({ onLoggedIn  })=>{
                         children: "Submit"
                     }, void 0, false, {
                         fileName: "src/components/login-view/login-view.jsx",
-                        lineNumber: 55,
+                        lineNumber: 74,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 36,
+                lineNumber: 53,
                 columnNumber: 9
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
@@ -28579,7 +28621,7 @@ const LoginView = ({ onLoggedIn  })=>{
                 children: "Not registered? Click here!"
             }, void 0, false, {
                 fileName: "src/components/login-view/login-view.jsx",
-                lineNumber: 59,
+                lineNumber: 78,
                 columnNumber: 9
             }, undefined)
         ]
@@ -28588,11 +28630,11 @@ const LoginView = ({ onLoggedIn  })=>{
         handleUnregistered: handleUnregistered
     }, void 0, false, {
         fileName: "src/components/login-view/login-view.jsx",
-        lineNumber: 65,
+        lineNumber: 84,
         columnNumber: 12
     }, undefined);
 };
-_s(LoginView, "c5hrAM8+6H4im2KqTBdpCPJC8WI=");
+_s(LoginView, "BxXqCigBqHYzunIRMKINw59fbbk=");
 _c = LoginView;
 LoginView.propTypes = {
     onLoggedIn: _propTypesDefault.default.func.isRequired

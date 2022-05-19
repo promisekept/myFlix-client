@@ -14,18 +14,18 @@ const MainView = () => {
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(null);
 
-  useEffect(
-    () =>
-      axios
-        .get("https://herokumovieapi.herokuapp.com/movies")
-        .then((response) => {
-          setMovies(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        }),
-    []
-  );
+  // useEffect(
+  //   () =>
+  //     axios
+  //       .get("https://herokumovieapi.herokuapp.com/movies")
+  //       .then((response) => {
+  //         setMovies(response.data);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       }),
+  //   []
+  // );
 
   useEffect(() => setUser(localStorage.getItem("user")), []);
 

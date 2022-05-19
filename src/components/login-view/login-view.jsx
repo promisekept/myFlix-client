@@ -8,23 +8,40 @@ import axios from "axios";
 const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [usernameErr, setUsernameErr] = useState("");
+  const [passwordErr, setPasswordErr] = useState("");
+
   const [registered, setRegistered] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // onLoggedIn(username);
     /* Send a request to the server for authentication */
-    axios
-      .post("https://herokumovieapi.herokuapp.com/login", {
-        Username: username,
-        Password: password,
-      })
-      .then((response) => {
-        onLoggedIn(response.data);
-      })
-      .catch((e) => {
-        console.log("no such user");
-      });
+    if (!username) {
+      setUsernameErr("Username Required");
+    } else if (username.length < 5) {
+      setUsernameErr("Username must be at least 5 characters long");
+    } else if (!password) {
+      setPasswordErr(<p className="text-danger">Password Required</p>);
+    } else if (password.length < 4) {
+      setPasswordErr(
+        <p className="text-danger">
+          Password must be at least 4 characters long
+        </p>
+      );
+    } else {
+      axios
+        .post("https://herokumovieapi.herokuapp.com/login", {
+          Username: username,
+          Password: password,
+        })
+        .then((response) => {
+          onLoggedIn(response.data);
+        })
+        .catch((e) => {
+          console.log("no such user");
+        });
+    }
   };
 
   const handleUnregistered = () => {
@@ -43,6 +60,7 @@ const LoginView = ({ onLoggedIn }) => {
                 setUsername(e.target.value);
               }}
             />
+            {usernameErr && <p className="text-danger">{usernameErr}</p>}
           </Form.Group>
           <Form.Group controlId="formPassword">
             <Form.Label>Password:</Form.Label>
@@ -51,6 +69,7 @@ const LoginView = ({ onLoggedIn }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            {passwordErr && <p className="text-danger">{passwordErr}</p>}
           </Form.Group>
           <Button variant="primary" type="submit" onClick={handleSubmit}>
             Submit
