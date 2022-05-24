@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useState } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
 import MovieCard from "../movie-card/movie-card";
 import MovieView from "../movie-view/movie-view";
 import LoginView from "../login-view/login-view";
+
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
@@ -65,8 +67,6 @@ const MainView = () => {
     setUser(null);
   };
 
-  /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
-  //User not logged in
   if (!user)
     return (
       <Row className="justify-content-md-center">
@@ -116,5 +116,4 @@ const MainView = () => {
       </>
     );
 };
-
 export default MainView;
