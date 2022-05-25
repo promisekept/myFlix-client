@@ -22763,19 +22763,33 @@ const MainView = ()=>{
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.BrowserRouter, {
                 children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Routes, {
-                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
-                        path: "/",
-                        element: user ? /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_movieCardDefault.default, {
-                            movies: movies
-                        }, void 0, false, void 0, void 0) : /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_loginViewDefault.default, {
-                            onLoggedIn: onLoggedIn
-                        }, void 0, false, void 0, void 0)
-                    }, void 0, false, {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 77,
-                        columnNumber: 11
-                    }, undefined)
-                }, void 0, false, {
+                    children: [
+                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
+                            path: "/",
+                            element: user ? /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_movieCardDefault.default, {
+                                movies: movies
+                            }, void 0, false, void 0, void 0) : /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_loginViewDefault.default, {
+                                onLoggedIn: onLoggedIn
+                            }, void 0, false, void 0, void 0)
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 77,
+                            columnNumber: 11
+                        }, undefined),
+                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
+                            path: "/movies",
+                            element: user ? /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_movieCardDefault.default, {
+                                movies: movies
+                            }, void 0, false, void 0, void 0) : /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
+                                children: "there are no movies"
+                            }, void 0, false, void 0, void 0)
+                        }, void 0, false, {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 89,
+                            columnNumber: 11
+                        }, undefined)
+                    ]
+                }, void 0, true, {
                     fileName: "src/components/main-view/main-view.jsx",
                     lineNumber: 76,
                     columnNumber: 9
@@ -22846,7 +22860,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","axios":"jo6P5","react-router-dom":"fdOAw","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","react-bootstrap/Button":"aPzUt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react/jsx-dev-runtime":"iTorj"}],"jo6P5":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","react-router-dom":"fdOAw","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","react-bootstrap/Button":"aPzUt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"jo6P5":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {
@@ -28034,15 +28048,14 @@ var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _card = require("react-bootstrap/Card");
 var _cardDefault = parcelHelpers.interopDefault(_card);
 // const MovieCard = ({ displayMovie, movie }) => {
-const MovieCard = ({ movies , hello  })=>{
+const MovieCard = ({ movies  })=>{
     console.log(movies);
-    console.log(hello);
     // movies.map((movie) => console.log(movie));
     return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
         children: "test"
     }, void 0, false, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 12,
+        lineNumber: 11,
         columnNumber: 5
     }, undefined);
 };

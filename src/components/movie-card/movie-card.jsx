@@ -4,9 +4,8 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 // const MovieCard = ({ displayMovie, movie }) => {
-const MovieCard = ({ movies, hello }) => {
+const MovieCard = ({ movies }) => {
   console.log(movies);
-  console.log(hello);
   // movies.map((movie) => console.log(movie));
   return (
     <p>test</p>

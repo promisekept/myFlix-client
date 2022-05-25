@@ -77,13 +77,18 @@ const MainView = () => {
           <Route
             path="/"
             element={
-              user ? (
+              user ?
                 <MovieCard movies={movies} />
-              ) : (
+                :
                 <LoginView onLoggedIn={onLoggedIn} />
-              )
+
+
+              // <LoginView onLoggedIn={onLoggedIn} />
             }
           />
+          <Route path="/movies" element={user ?
+            <MovieCard movies={movies} /> : <p>there are no movies</p>
+          } />
         </Routes>
       </Router>
     </>
