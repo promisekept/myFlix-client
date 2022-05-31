@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 
 import MovieCard from "../movie-card/movie-card";
 import MovieView from "../movie-view/movie-view";
@@ -11,56 +11,36 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 const MainView = () => {
-  // Initial state is set to null
-  const [selectedMovie, setSelectedMovie] = useState();
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([])
   const [user, setUser] = useState(null);
-  const bob = { bob: "bob", bill: "bill" };
+  const [selectedMovie, setSelectedMovie] = useState([]);
 
-  // useEffect(
-  //   () =>
-  //     axios
-  //       .get("https://herokumovieapi.herokuapp.com/movies", {
-  //         headers: { Authorization: `Bearer ${token}` },
-  //       })
-  //       .then((response) => {
-  //         setMovies(response.data);
-  //       })
-  //       .catch(function (error) {
-  //         console.log(error);
-  //       }),
-  //   []
-  // );
+  useEffect(
+    () => {
+      if (user) {
+        axios
+          .get("https://herokumovieapi.herokuapp.com/movies", {
+            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+          })
+          .then((response) => {
+            setMovies(response.data);
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+      }
+    },
+    [user]
+  );
 
-  useEffect(() => setUser(localStorage.getItem("user")), []);
+  useEffect(() => { if (localStorage.getItem("user")) setUser(localStorage.getItem("user")) }
+    , []);
 
-  /*When a movie is clicked, this function is invoked and updates the state of the `selectedMovie` *property to that movie*/
-  const displayMovie = (movie) => {
-    setSelectedMovie(movie);
-  };
-  const returnToMain = () => {
-    setSelectedMovie();
-  };
-
-  const getMovies = (token) => {
-    axios
-      .get("https://herokumovieapi.herokuapp.com/movies", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then((response) => {
-        setMovies(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
 
   const onLoggedIn = (authData) => {
-    // console.log(`Auth Data: ${authData}`);
     setUser(authData);
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
-    getMovies(authData.token);
   };
 
   const onLoggedOut = () => {
@@ -68,30 +48,52 @@ const MainView = () => {
     localStorage.removeItem("user");
     setUser(null);
   };
-
+  const selectMovie = (movie) => {
+    console.log(`This is the selected movie: ${selectedMovie.Title}`)
+    setSelectedMovie(movie);
+  }
   return (
-    <>
-      {user && <Button onClick={onLoggedOut}>Log out</Button>}
-      <Router>
+    <Router>
+      {!user ?
         <Routes>
-          <Route
-            path="/"
-            element={
-              user ?
-                <MovieCard movies={movies} />
-                :
-                <LoginView onLoggedIn={onLoggedIn} />
-
-
-              // <LoginView onLoggedIn={onLoggedIn} />
-            }
-          />
-          <Route path="/movies" element={user ?
-            <MovieCard movies={movies} /> : <p>there are no movies</p>
-          } />
+          <Route path="/*" element={<LoginView onLoggedIn={onLoggedIn} />} />
+          {/* <Route path="/*" element={<><Navigate to="/" /><LoginView onLoggedIn={onLoggedIn} /></>} /> */}
         </Routes>
-      </Router>
-    </>
+        :
+        <>
+          <Button onClick={onLoggedOut}>Log out</Button>
+          <Routes>
+            <Route path="/" element={<Navigate to="/movies" />} />
+            <Route path="/movies" element={movies.map((movie) => <MovieCard key={movie._id} movie={movie} selectMovie={selectMovie} />)} >
+            </Route>
+            <Route path="/movies/:movieId" element={<MovieView selectedMovie={selectedMovie} />} />
+          </Routes>
+        </>}
+    </Router >
+
+    //  <Router>
+    //     {user && <Button onClick={onLoggedOut}>Log out</Button>}
+    //     <Routes>
+    //       <Route
+    //         path="/"
+    //         element={
+    //           user ?
+    //             <Navigate to="/movies" />
+    //             :
+    //             <LoginView onLoggedIn={onLoggedIn} />
+
+    //         }
+    //       />
+    //       <Route
+    //         path="/movies"
+    //         element={
+    //           user ?
+    //             <MovieCard movies={movies} />
+    //             :
+    //             <Navigate to="/" />
+    //         } />
+    //     </Routes>
+    //   </Router>
   );
 
   //   if (!user)

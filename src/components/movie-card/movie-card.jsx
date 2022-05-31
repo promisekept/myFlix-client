@@ -1,22 +1,21 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-// const MovieCard = ({ displayMovie, movie }) => {
-const MovieCard = ({ movies }) => {
-  console.log(movies);
-  // movies.map((movie) => console.log(movie));
+const MovieCard = ({ movie, selectMovie }) => {
+  console.log(movie)
   return (
-    <p>test</p>
-    //   <Card>
-    //     <Card.Img variant="top" src={movie.ImagePath} />
-    //     <Card.Body>
-    //       <Card.Title>{movie.Title}</Card.Title>
-    //       {/* <Button onClick={() => displayMovie(movie)}>Open</Button> */}
-    //     </Card.Body>
-    //   </Card>
-    // );
+    <Card>
+      <Card.Img variant="top" src={movie.ImagePath} />
+      <Card.Body>
+        <Card.Title>{movie.Title}</Card.Title>
+        {/* <Link to={`/movies/${movie._id}`}> */}
+        <Button variant="link" onClick={() => { selectMovie(movie) }}>Open</Button>
+        {/* </Link> */}
+      </Card.Body>
+    </Card >
   );
 };
 
