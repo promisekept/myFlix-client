@@ -9,11 +9,13 @@ import LoginView from "../login-view/login-view";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import Navbar from "../navbar/navbar";
 
 const MainView = () => {
   const [movies, setMovies] = useState([])
   const [user, setUser] = useState(null);
-  const [selectedMovie, setSelectedMovie] = useState([]);
+  // const [selectedMovie, setSelectedMovie] = useState([]);
+  const [movieId, setMovieId] = useState([]);
 
   useEffect(
     () => {
@@ -48,12 +50,18 @@ const MainView = () => {
     localStorage.removeItem("user");
     setUser(null);
   };
-  const selectMovie = (movie) => {
-    console.log(`This is the selected movie: ${selectedMovie.Title}`)
-    setSelectedMovie(movie);
+  const selectMovie = (id) => {
+    // console.log(`This is the selectedMovie.Title: ${selectedMovie.Title}`)
+    // console.log(`This is the this is movie.Title: ${movie.Title}`)
+    // console.log("-----------------------------")
+    // setSelectedMovie(movie);
+    // console.log(`This is the selectedMovie.Title: ${selectedMovie.Title}`)
+    setMovieId(id);
+    // return movie;
   }
   return (
     <Router>
+      <Navbar user={user} />
       {!user ?
         <Routes>
           <Route path="/*" element={<LoginView onLoggedIn={onLoggedIn} />} />
@@ -66,7 +74,7 @@ const MainView = () => {
             <Route path="/" element={<Navigate to="/movies" />} />
             <Route path="/movies" element={movies.map((movie) => <MovieCard key={movie._id} movie={movie} selectMovie={selectMovie} />)} >
             </Route>
-            <Route path="/movies/:movieId" element={<MovieView selectedMovie={selectedMovie} />} />
+            <Route path="/movies/:movieId" element={<MovieView movieId={movieId} movies={movies} />} />
           </Routes>
         </>}
     </Router >

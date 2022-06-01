@@ -5,15 +5,15 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
 const MovieCard = ({ movie, selectMovie }) => {
-  console.log(movie)
   return (
     <Card>
       <Card.Img variant="top" src={movie.ImagePath} />
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
-        {/* <Link to={`/movies/${movie._id}`}> */}
-        <Button variant="link" onClick={() => { selectMovie(movie) }}>Open</Button>
-        {/* </Link> */}
+        <Link to={`/movies/${movie._id}`}>
+          <Button variant="link" onClick={() => { selectMovie(movie._id)  }}>Open</Button>
+          {/* <Button variant="link" onClick={() => { selectMovie(movie) }}>Open</Button> */}
+        </Link>
       </Card.Body>
     </Card >
   );

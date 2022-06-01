@@ -1,11 +1,11 @@
-import React from "react";
-import Button from 'react-bootstrap'
-import Link from 'react-router-dom'
+import React, { useState } from "react";
+import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 import PropTypes from "prop-types";
 
-const MovieView = ({ selectedMovie }) => {
-  const movie = selectedMovie;
+const MovieView = ({ movieId, movies }) => {
+  const [movie, setMovie] = useState(movies.find(m => m._id === movieId));
   return (
     <>
       <div className="movie-view">
@@ -21,8 +21,14 @@ const MovieView = ({ selectedMovie }) => {
         <span className="label">Description: </span>
         <span className="value">{movie.Description}</span>
       </div>
-      <Link to={"/movies"}>
-        <Button>Go back to the list of movies</Button>
+      <Link to={`/movies`}>
+        <Button variant="link">Return</Button>
+      </Link>
+      <Link to={`/directors/${movie.Director.Name}`}>
+        <Button variant="link">Director</Button>
+      </Link>
+      <Link to={`/genres/${movie.Genre.Name}`}>
+        <Button variant="link">Genre</Button>
       </Link>
     </>
   );
