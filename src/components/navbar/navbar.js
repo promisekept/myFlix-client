@@ -1,17 +1,16 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const Navbar = ({ user }) => {
+const Navbar = () => {
     return (
         <nav>
-            {user ?
+            {localStorage.getItem("user") ?
                 <>
                     <NavLink to='/'>Home</NavLink>
                     <NavLink to='/profile-view'>Profile</NavLink>
                     <NavLink to='/signout'>Sign out</NavLink>
-                </> : <>
-                    <NavLink to='/signup'>Sign up</NavLink>
-                </>
+                </> :
+                <NavLink to='/registration'>Sign up</NavLink>
             }
         </nav>
     )

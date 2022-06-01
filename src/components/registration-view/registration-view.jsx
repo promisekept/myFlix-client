@@ -56,7 +56,7 @@ const RegistrationView = ({ handleUnregistered }) => {
     </Form>
   );
 };
-RegistrationView.propTypes = {
-  handleUnregistered: PropTypes.func.isRequired,
-};
+// RegistrationView.propTypes = {
+//   handleUnregistered: PropTypes.func.isRequired,
+// };
 export default RegistrationView;

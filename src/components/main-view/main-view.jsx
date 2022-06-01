@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import MovieCard from "../movie-card/movie-card";
 import MovieView from "../movie-view/movie-view";
 import LoginView from "../login-view/login-view";
+import RegView from "../registration-view/registration-view";
+import Signout from "../signout/signout.jsx";
+import Error from "../error/error.jsx";
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import Navbar from "../navbar/navbar";
 
+
 const MainView = () => {
   const [movies, setMovies] = useState([])
   const [user, setUser] = useState(null);
-  // const [selectedMovie, setSelectedMovie] = useState([]);
   const [movieId, setMovieId] = useState([]);
 
   useEffect(
@@ -45,38 +48,20 @@ const MainView = () => {
     localStorage.setItem("user", authData.user.Username);
   };
 
-  const onLoggedOut = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    setUser(null);
-  };
   const selectMovie = (id) => {
-    // console.log(`This is the selectedMovie.Title: ${selectedMovie.Title}`)
-    // console.log(`This is the this is movie.Title: ${movie.Title}`)
-    // console.log("-----------------------------")
-    // setSelectedMovie(movie);
-    // console.log(`This is the selectedMovie.Title: ${selectedMovie.Title}`)
     setMovieId(id);
-    // return movie;
   }
   return (
     <Router>
-      <Navbar user={user} />
-      {!user ?
-        <Routes>
-          <Route path="/*" element={<LoginView onLoggedIn={onLoggedIn} />} />
-          {/* <Route path="/*" element={<><Navigate to="/" /><LoginView onLoggedIn={onLoggedIn} /></>} /> */}
-        </Routes>
-        :
-        <>
-          <Button onClick={onLoggedOut}>Log out</Button>
-          <Routes>
-            <Route path="/" element={<Navigate to="/movies" />} />
-            <Route path="/movies" element={movies.map((movie) => <MovieCard key={movie._id} movie={movie} selectMovie={selectMovie} />)} >
-            </Route>
-            <Route path="/movies/:movieId" element={<MovieView movieId={movieId} movies={movies} />} />
-          </Routes>
-        </>}
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<LoginView onLoggedIn={onLoggedIn} />} />
+        <Route path="/registration" element={<RegView />} />
+        <Route path="/movies" element={movies.map((movie) => <MovieCard key={movie._id} movie={movie} selectMovie={selectMovie} />)} />
+        <Route path="/movies/:movieId" element={<MovieView movieId={movieId} movies={movies} />} />
+        <Route path='/signout' element={<Signout />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
     </Router >
 
     //  <Router>
