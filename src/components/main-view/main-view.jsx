@@ -8,11 +8,11 @@ import LoginView from "../login-view/login-view";
 import RegView from "../registration-view/registration-view";
 import Signout from "../signout/signout.jsx";
 import Error from "../error/error.jsx";
+import Navbar from "../navbar/navbar";
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import Navbar from "../navbar/navbar";
 
 
 const MainView = () => {
