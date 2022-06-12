@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  // useNavigate,
+} from "react-router-dom";
+
+// const navigate = useNavigate();
 
 import MovieCard from "../movie-card/movie-card";
 import MovieView from "../movie-view/movie-view";
@@ -13,56 +21,78 @@ import Navbar from "../navbar/navbar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-
+import Director from "../director/director";
 
 const MainView = () => {
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState([]);
   const [user, setUser] = useState(null);
   const [movieId, setMovieId] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(
-    () => {
-      if (user) {
-        axios
-          .get("https://herokumovieapi.herokuapp.com/movies", {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-          })
-          .then((response) => {
-            setMovies(response.data);
-          })
-          .catch(function (error) {
-            console.log(error);
-          })
-      }
-    },
-    [user]
-  );
+  useEffect(() => {
+    if (user) {
+      axios
+        .get("https://herokumovieapi.herokuapp.com/movies", {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        })
+        .then((response) => {
+          setMovies(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }, [user]);
 
-  useEffect(() => { if (localStorage.getItem("user")) setUser(localStorage.getItem("user")) }
-    , []);
-
+  useEffect(() => {
+    if (localStorage.getItem("user")) setUser(localStorage.getItem("user"));
+  }, []);
 
   const onLoggedIn = (authData) => {
     setUser(authData);
     localStorage.setItem("token", authData.token);
     localStorage.setItem("user", authData.user.Username);
+    setIsLoggedIn(true);
   };
 
+  const onLoggedOut = () => {
+    setIsLoggedIn(false);
+  };
   const selectMovie = (id) => {
     setMovieId(id);
-  }
+  };
+
   return (
     <Router>
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} />
       <Routes>
         <Route path="/" element={<LoginView onLoggedIn={onLoggedIn} />} />
-        <Route path="/registration" element={<RegView />} />
-        <Route path="/movies" element={movies.map((movie) => <MovieCard key={movie._id} movie={movie} selectMovie={selectMovie} />)} />
-        <Route path="/movies/:movieId" element={<MovieView movieId={movieId} movies={movies} />} />
-        <Route path='/signout' element={<Signout />} />
+        <Route
+          path="/registration"
+          element={user ? <Navigate to="/movies" /> : <RegView />}
+        />
+        <Route
+          path="/movies"
+          element={movies.map((movie) => (
+            <MovieCard
+              key={movie._id}
+              movie={movie}
+              selectMovie={selectMovie}
+            />
+          ))}
+        />
+        <Route
+          path="/movies/:movieId"
+          element={<MovieView movieId={movieId} movies={movies} />}
+        />
+        <Route
+          path="/signout"
+          element={<Signout onLoggedOut={onLoggedOut} />}
+        />
+        <Route path="/directors/:name" element={<Director movies={movies} />} />
         <Route path="*" element={<Error />} />
       </Routes>
-    </Router >
+    </Router>
 
     //  <Router>
     //     {user && <Button onClick={onLoggedOut}>Log out</Button>}

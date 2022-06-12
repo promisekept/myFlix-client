@@ -1,19 +1,35 @@
 import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Form } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import axios from "axios";
 
-const RegistrationView = ({ handleUnregistered }) => {
+const RegistrationView = () => {
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newBirthday, setNewBirthday] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleRegister = (e) => {
     e.preventDefault();
     console.log(newUsername, newPassword, newEmail, newBirthday);
-    handleUnregistered();
+    axios
+      .post("https://herokumovieapi.herokuapp.com/users", {
+        Username: newUsername,
+        Password: newPassword,
+        Email: newEmail,
+        Birthday: newBirthday,
+      })
+      .then((response) => {
+        const data = response.data;
+        console.log(data);
+        window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
+      })
+      .catch((e) => {
+        console.log("error registering the user");
+      });
   };
 
   return (
@@ -50,7 +66,7 @@ const RegistrationView = ({ handleUnregistered }) => {
           onChange={(e) => setNewBirthday(e.target.value)}
         />
       </Form.Group>
-      <Button type="submit" onClick={handleSubmit}>
+      <Button type="submit" onClick={handleRegister}>
         Submit
       </Button>
     </Form>

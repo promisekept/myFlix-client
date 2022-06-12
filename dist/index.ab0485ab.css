@@ -2085,7 +2085,6 @@ progress {
 .form-control {
   width: 100%;
   color: #212529;
-  -webkit-appearance: none;
   appearance: none;
   background-color: #fff;
   background-clip: padding-box;
@@ -2298,7 +2297,6 @@ textarea.form-control-lg {
   width: 100%;
   -moz-padding-start: calc(.75rem - 3px);
   color: #212529;
-  -webkit-appearance: none;
   appearance: none;
   background-color: #fff;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
@@ -2373,7 +2371,6 @@ textarea.form-control-lg {
   width: 1em;
   height: 1em;
   vertical-align: top;
-  -webkit-appearance: none;
   appearance: none;
   -webkit-print-color-adjust: exact;
   color-adjust: exact;
@@ -2480,7 +2477,6 @@ textarea.form-control-lg {
 .form-range {
   width: 100%;
   height: 1.5rem;
-  -webkit-appearance: none;
   appearance: none;
   background-color: #0000;
   padding: 0;
@@ -2505,7 +2501,6 @@ textarea.form-control-lg {
 .form-range::-webkit-slider-thumb {
   width: 1rem;
   height: 1rem;
-  -webkit-appearance: none;
   appearance: none;
   background-color: #0d6efd;
   border: none;
@@ -2537,7 +2532,6 @@ textarea.form-control-lg {
 .form-range::-moz-range-thumb {
   width: 1rem;
   height: 1rem;
-  -webkit-appearance: none;
   appearance: none;
   background-color: #0d6efd;
   border: none;
@@ -2885,7 +2879,6 @@ textarea.form-control-lg {
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
-  -webkit-user-select: none;
   user-select: none;
   background-color: #0000;
   border: 1px solid #0000;
@@ -5560,7 +5553,6 @@ textarea.form-control-lg {
 
 .btn-close.disabled, .btn-close:disabled {
   pointer-events: none;
-  -webkit-user-select: none;
   user-select: none;
   opacity: .25;
 }
@@ -6222,7 +6214,6 @@ textarea.form-control-lg {
 .carousel-item {
   float: left;
   width: 100%;
-  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   margin-right: -100%;
   transition: transform .6s ease-in-out;
@@ -8068,17 +8059,14 @@ textarea.form-control-lg {
 }
 
 .user-select-all {
-  -webkit-user-select: all !important;
   user-select: all !important;
 }
 
 .user-select-auto {
-  -webkit-user-select: auto !important;
   user-select: auto !important;
 }
 
 .user-select-none {
-  -webkit-user-select: none !important;
   user-select: none !important;
 }
 

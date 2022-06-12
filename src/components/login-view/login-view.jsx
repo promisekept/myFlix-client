@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const LoginView = ({ onLoggedIn }) => {
   const [username, setUsername] = useState("");
@@ -38,11 +38,11 @@ const LoginView = ({ onLoggedIn }) => {
         })
         .then((response) => {
           onLoggedIn(response.data);
+          navigate("/movies");
         })
         .catch((e) => {
           console.log("no such user");
         });
-      navigate("/movies")
     }
   };
   return (
