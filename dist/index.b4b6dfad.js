@@ -22698,14 +22698,18 @@ var _errorJsx = require("../error/error.jsx");
 var _errorJsxDefault = parcelHelpers.interopDefault(_errorJsx);
 var _navbar = require("../navbar/navbar");
 var _navbarDefault = parcelHelpers.interopDefault(_navbar);
+var _genre = require("../genre/genre");
+var _genreDefault = parcelHelpers.interopDefault(_genre);
+var _director = require("../director/director");
+var _directorDefault = parcelHelpers.interopDefault(_director);
+var _profile = require("../profile/profile");
+var _profileDefault = parcelHelpers.interopDefault(_profile);
 var _row = require("react-bootstrap/Row");
 var _rowDefault = parcelHelpers.interopDefault(_row);
 var _col = require("react-bootstrap/Col");
 var _colDefault = parcelHelpers.interopDefault(_col);
 var _button = require("react-bootstrap/Button");
 var _buttonDefault = parcelHelpers.interopDefault(_button);
-var _director = require("../director/director");
-var _directorDefault = parcelHelpers.interopDefault(_director);
 var _s = $RefreshSig$();
 const MainView = ()=>{
     _s();
@@ -22747,7 +22751,7 @@ const MainView = ()=>{
                 isLoggedIn: isLoggedIn
             }, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 67,
+                lineNumber: 69,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Routes, {
@@ -22759,7 +22763,7 @@ const MainView = ()=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 69,
+                        lineNumber: 71,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22769,7 +22773,7 @@ const MainView = ()=>{
                         }, void 0, false, void 0, void 0) : /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_registrationViewDefault.default, {}, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 70,
+                        lineNumber: 72,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22781,7 +22785,7 @@ const MainView = ()=>{
                         )
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 74,
+                        lineNumber: 76,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22792,7 +22796,7 @@ const MainView = ()=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 84,
+                        lineNumber: 86,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22802,7 +22806,7 @@ const MainView = ()=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 88,
+                        lineNumber: 90,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22812,7 +22816,27 @@ const MainView = ()=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 92,
+                        lineNumber: 94,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
+                        path: "/genres/:name",
+                        element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_genreDefault.default, {
+                            movies: movies
+                        }, void 0, false, void 0, void 0)
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 95,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
+                        path: "/profile-view",
+                        element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_profileDefault.default, {
+                            user: user
+                        }, void 0, false, void 0, void 0)
+                    }, void 0, false, {
+                        fileName: "src/components/main-view/main-view.jsx",
+                        lineNumber: 96,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22820,19 +22844,19 @@ const MainView = ()=>{
                         element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_errorJsxDefault.default, {}, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 93,
+                        lineNumber: 97,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 68,
+                lineNumber: 70,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 66,
+        lineNumber: 68,
         columnNumber: 5
     }, undefined);
 //   if (!user)
@@ -22894,7 +22918,7 @@ $RefreshReg$(_c, "MainView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","react-router-dom":"fdOAw","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","../registration-view/registration-view":"3U8r7","../signout/signout.jsx":"chtiO","../error/error.jsx":"e96mA","../navbar/navbar":"02YIJ","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","react-bootstrap/Button":"aPzUt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../director/director":"cfETK"}],"jo6P5":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","react-router-dom":"fdOAw","../movie-card/movie-card":"bwuIu","../movie-view/movie-view":"ggaUx","../login-view/login-view":"9YtA0","../registration-view/registration-view":"3U8r7","../signout/signout.jsx":"chtiO","../error/error.jsx":"e96mA","../navbar/navbar":"02YIJ","react-bootstrap/Row":"cMC39","react-bootstrap/Col":"2L2I6","react-bootstrap/Button":"aPzUt","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../director/director":"cfETK","../genre/genre":"hEby5","../profile/profile":"58QaY"}],"jo6P5":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"63MyY"}],"63MyY":[function(require,module,exports) {
@@ -41889,22 +41913,51 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
 var _reactRouterDom = require("react-router-dom");
+var _movieCard = require("../movie-card/movie-card");
+var _movieCardDefault = parcelHelpers.interopDefault(_movieCard);
 var _s = $RefreshSig$();
 const Director = ({ movies  })=>{
     _s();
     //make director name match the first movie he's in.  Then display his bio
     const navigate = _reactRouterDom.useNavigate();
-    console.log(movies);
-    let params = _reactRouterDom.useParams();
+    const params = _reactRouterDom.useParams();
+    const director = params.name;
+    const directorsMovies = movies.filter((movie)=>movie.Director.Name === director
+    );
     return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
         children: [
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-                children: params.name
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h3", {
+                children: "Biography:"
             }, void 0, false, {
                 fileName: "src/components/director/director.jsx",
-                lineNumber: 12,
+                lineNumber: 16,
                 columnNumber: 7
             }, undefined),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+                children: directorsMovies[0].Director.Bio
+            }, void 0, false, {
+                fileName: "src/components/director/director.jsx",
+                lineNumber: 17,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h3", {
+                children: [
+                    director,
+                    "'s movies:"
+                ]
+            }, void 0, true, {
+                fileName: "src/components/director/director.jsx",
+                lineNumber: 18,
+                columnNumber: 7
+            }, undefined),
+            directorsMovies.map((movie)=>/*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+                    children: movie.Title
+                }, movie._id, false, {
+                    fileName: "src/components/director/director.jsx",
+                    lineNumber: 20,
+                    columnNumber: 9
+                }, undefined)
+            ),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
                 variant: "link",
                 onClick: ()=>navigate(-1)
@@ -41912,7 +41965,7 @@ const Director = ({ movies  })=>{
                 children: "Go back"
             }, void 0, false, {
                 fileName: "src/components/director/director.jsx",
-                lineNumber: 13,
+                lineNumber: 22,
                 columnNumber: 7
             }, undefined)
         ]
@@ -41934,7 +41987,7 @@ $RefreshReg$(_c, "Director");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","react-router-dom":"fdOAw"}],"9YtA0":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A","react-router-dom":"fdOAw","../movie-card/movie-card":"bwuIu"}],"9YtA0":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$9fee = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42473,6 +42526,174 @@ $RefreshReg$(_c, "Navbar");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"fdOAw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"i5LP7":[function() {},{}]},["kn9T2","1wDOc","d8Dch"], "d8Dch", "parcelRequireaec4")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"fdOAw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"hEby5":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$c9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$c9f6.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactRouterDom = require("react-router-dom");
+var _reactBootstrap = require("react-bootstrap");
+var _s = $RefreshSig$();
+const Genre = ({ movies  })=>{
+    _s();
+    const params = _reactRouterDom.useParams();
+    const navigate = _reactRouterDom.useNavigate();
+    const genre = params.name;
+    const genreMovies = movies.filter((movie)=>movie.Genre.Name === params.name
+    );
+    return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
+        children: [
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h3", {
+                children: "Genre Description:"
+            }, void 0, false, {
+                fileName: "src/components/genre/genre.jsx",
+                lineNumber: 14,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+                children: genreMovies[0].Genre.Description
+            }, void 0, false, {
+                fileName: "src/components/genre/genre.jsx",
+                lineNumber: 15,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h3", {
+                children: [
+                    genre,
+                    " movies:"
+                ]
+            }, void 0, true, {
+                fileName: "src/components/genre/genre.jsx",
+                lineNumber: 16,
+                columnNumber: 7
+            }, undefined),
+            genreMovies.map((movie)=>/*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+                    children: movie.Title
+                }, movie._id, false, {
+                    fileName: "src/components/genre/genre.jsx",
+                    lineNumber: 18,
+                    columnNumber: 9
+                }, undefined)
+            ),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                variant: "link",
+                onClick: ()=>navigate(-1)
+                ,
+                children: "Go back"
+            }, void 0, false, {
+                fileName: "src/components/genre/genre.jsx",
+                lineNumber: 20,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true);
+};
+_s(Genre, "lSYLabgCnDLruuq/SSKUMozqso0=", false, function() {
+    return [
+        _reactRouterDom.useParams,
+        _reactRouterDom.useNavigate
+    ];
+});
+_c = Genre;
+exports.default = Genre;
+var _c;
+$RefreshReg$(_c, "Genre");
+
+  $parcel$ReactRefreshHelpers$c9f6.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"fdOAw","react-bootstrap":"3AD9A"}],"58QaY":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$0e9b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$0e9b.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _reactRouterDom = require("react-router-dom");
+var _reactBootstrap = require("react-bootstrap");
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _s = $RefreshSig$();
+const Profile = ({ user  })=>{
+    _s();
+    const [allUsers, setAllUsers] = _react.useState(null);
+    _react.useEffect(()=>{
+        _axiosDefault.default.get("https://herokumovieapi.herokuapp.com/users", {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        }).then((response)=>{
+            setAllUsers(response.data);
+        }).catch(function(error) {
+            console.log(error);
+        });
+    }, []);
+    let userAccount = null;
+    if (allUsers) userAccount = allUsers.filter((account)=>account.Username === user
+    )[0];
+    //   console.log(userAccount);
+    const navigate = _reactRouterDom.useNavigate();
+    return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
+        children: [
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h3", {
+                children: "Your account information:"
+            }, void 0, false, {
+                fileName: "src/components/profile/profile.jsx",
+                lineNumber: 29,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+                children: [
+                    "Username: ",
+                    allUsers ? userAccount.Username : ""
+                ]
+            }, void 0, true, {
+                fileName: "src/components/profile/profile.jsx",
+                lineNumber: 30,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                varian: "link",
+                onClick: ()=>navigate(-1)
+                ,
+                children: "Go back"
+            }, void 0, false, {
+                fileName: "src/components/profile/profile.jsx",
+                lineNumber: 33,
+                columnNumber: 7
+            }, undefined)
+        ]
+    }, void 0, true);
+};
+_s(Profile, "p41VilyqG+6Rh/1uWUqxuzgct68=", false, function() {
+    return [
+        _reactRouterDom.useNavigate
+    ];
+});
+_c = Profile;
+exports.default = Profile;
+var _c;
+$RefreshReg$(_c, "Profile");
+
+  $parcel$ReactRefreshHelpers$0e9b.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","react-router-dom":"fdOAw","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","axios":"jo6P5","react/jsx-dev-runtime":"iTorj"}],"i5LP7":[function() {},{}]},["kn9T2","1wDOc","d8Dch"], "d8Dch", "parcelRequireaec4")
 
 //# sourceMappingURL=index.b4b6dfad.js.map

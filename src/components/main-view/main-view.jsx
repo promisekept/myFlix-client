@@ -17,11 +17,13 @@ import RegView from "../registration-view/registration-view";
 import Signout from "../signout/signout.jsx";
 import Error from "../error/error.jsx";
 import Navbar from "../navbar/navbar";
+import Genre from "../genre/genre";
+import Director from "../director/director";
+import Profile from "../profile/profile";
 
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
-import Director from "../director/director";
 
 const MainView = () => {
   const [movies, setMovies] = useState([]);
@@ -90,6 +92,8 @@ const MainView = () => {
           element={<Signout onLoggedOut={onLoggedOut} />}
         />
         <Route path="/directors/:name" element={<Director movies={movies} />} />
+        <Route path="/genres/:name" element={<Genre movies={movies} />} />
+        <Route path="/profile-view" element={<Profile user={user} />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>
