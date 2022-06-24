@@ -47,7 +47,22 @@ const MainView = () => {
   }, [user]);
 
   useEffect(() => {
-    if (localStorage.getItem("user")) setUser(localStorage.getItem("user"));
+    if (localStorage.getItem("user")) {
+      const Username = localStorage.getItem("user");
+      axios
+        .get("https://herokumovieapi.herokuapp.com/users", {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        })
+        .then((response) => {
+          const allUsersAr = response.data;
+          setUser(allUsersAr.filter(account => account.Username === Username)[0])
+          // console.log(allUsersAr.filter(account => account.Username === Username))
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      console.log("useeffect rusn")
+    }
   }, []);
 
   const onLoggedIn = (authData) => {

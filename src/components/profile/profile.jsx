@@ -1,36 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useRoutes } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 
 const Profile = ({ user }) => {
-  const [allUsers, setAllUsers] = useState(null);
-  useEffect(() => {
-    axios
-      .get("https://herokumovieapi.herokuapp.com/users", {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      })
-      .then((response) => {
-        setAllUsers(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }, []);
-  let userAccount = null;
-  if (allUsers) {
-    userAccount = allUsers.filter((account) => account.Username === user)[0];
-  }
-  //   console.log(userAccount);
   const navigate = useNavigate();
+
+  const deleteAccount = (e) => {
+
+    e.preventDefault();
+    axios
+      .delete(`https://herokumovieapi.herokuapp.com/users/${user.user.Username}`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      }
+      ).then((response) => {
+        const data = response.data;
+        console.log(data);
+        window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
+      })
+      .catch((e) => {
+        console.log("error delete the user");
+      });
+  }
 
   return (
     <>
       <h3>Your account information:</h3>
-      <div>Username: {allUsers ? userAccount.Username : ""}</div>
-      {/* <div>Email: {userAccount.Email}</div> */}
-      {/* <div>Birthday: {userAccount.Birthday}</div>) */}
-      <Button varian="link" onClick={() => navigate(-1)}>
+      {console.log(user)}
+      <div>Username: {user.user.Username}</div>
+      <div>Email: {user.user.Email}</div>
+      <div>Birthday: {user.user.Birthday}</div>
+      <Button type="submit" onClick={deleteAccount}>Delete account</Button>
+      <Button variant="link" onClick={() => navigate(-1)}>
         Go back
       </Button>
     </>
