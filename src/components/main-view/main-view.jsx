@@ -55,13 +55,14 @@ const MainView = () => {
         })
         .then((response) => {
           const allUsersAr = response.data;
-          setUser(allUsersAr.filter(account => account.Username === Username)[0])
+          setUser(
+            allUsersAr.filter((account) => account.Username === Username)[0]
+          );
           // console.log(allUsersAr.filter(account => account.Username === Username))
         })
         .catch(function (error) {
           console.log(error);
         });
-      console.log("useeffect rusn")
     }
   }, []);
 

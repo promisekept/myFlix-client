@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Form } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
@@ -11,6 +11,8 @@ const RegistrationView = () => {
   const [newPassword, setNewPassword] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newBirthday, setNewBirthday] = useState("");
+  const [registrationSuccessful, setRegistratonSuccessful] = useState(false);
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -25,14 +27,22 @@ const RegistrationView = () => {
       .then((response) => {
         const data = response.data;
         console.log(data);
-        window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
+        setRegistratonSuccessful(true);
+        // window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
       })
       .catch((e) => {
         console.log("error registering the user");
       });
   };
 
-  return (
+  return registrationSuccessful ? (
+    <>
+      <p>Registration successful!</p>
+      <Button variant="link" onClick={() => navigate("/")}>
+        Log in
+      </Button>
+    </>
+  ) : (
     <Form>
       <Form.Group controlId="formNewUser">
         <Form.Label>New User:</Form.Label>
