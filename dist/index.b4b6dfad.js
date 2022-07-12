@@ -42224,10 +42224,6 @@ var _reactRouterDom = require("react-router-dom");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
-var _form = require("react-bootstrap/Form");
-var _formDefault = parcelHelpers.interopDefault(_form);
-var _button = require("react-bootstrap/Button");
-var _buttonDefault = parcelHelpers.interopDefault(_button);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _s = $RefreshSig$();
@@ -42258,137 +42254,137 @@ const RegistrationView = ()=>{
     };
     return registrationSuccessful ? /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
         children: [
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Alert, {
                 children: "Registration successful!"
             }, void 0, false, {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 40,
+                lineNumber: 38,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_buttonDefault.default, {
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
                 variant: "link",
                 onClick: ()=>navigate("/")
                 ,
                 children: "Log in"
             }, void 0, false, {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 41,
+                lineNumber: 39,
                 columnNumber: 7
             }, undefined)
         ]
-    }, void 0, true) : /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default, {
+    }, void 0, true) : /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form, {
         children: [
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Group, {
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
                 controlId: "formNewUser",
                 children: [
-                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Label, {
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
                         children: "New User:"
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 48,
+                        lineNumber: 46,
                         columnNumber: 9
                     }, undefined),
-                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Control, {
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
                         type: "text",
                         value: newUsername,
                         onChange: (e)=>setNewUsername(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 49,
+                        lineNumber: 47,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 47,
+                lineNumber: 45,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Group, {
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
                 controlId: "formNewPassword",
                 children: [
-                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Label, {
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
                         children: "New Password:"
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 56,
+                        lineNumber: 54,
                         columnNumber: 9
                     }, undefined),
-                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Control, {
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
                         type: "password",
                         value: newPassword,
                         onChange: (e)=>setNewPassword(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 57,
+                        lineNumber: 55,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 55,
+                lineNumber: 53,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Group, {
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
                 children: [
-                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Label, {
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
                         children: "Email:"
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 64,
+                        lineNumber: 62,
                         columnNumber: 9
                     }, undefined),
-                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Control, {
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
                         type: "email",
                         value: newEmail,
                         onChange: (e)=>setNewEmail(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 65,
+                        lineNumber: 63,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 63,
+                lineNumber: 61,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Group, {
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
                 children: [
-                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Label, {
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
                         children: "Birthday:"
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 72,
+                        lineNumber: 70,
                         columnNumber: 9
                     }, undefined),
-                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Control, {
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
                         type: "date",
                         value: newBirthday,
                         onChange: (e)=>setNewBirthday(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 73,
+                        lineNumber: 71,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 71,
+                lineNumber: 69,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_buttonDefault.default, {
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
                 type: "submit",
                 onClick: handleRegister,
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 79,
+                lineNumber: 77,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/registration-view/registration-view.jsx",
-        lineNumber: 46,
+        lineNumber: 44,
         columnNumber: 5
     }, undefined);
 };
@@ -42410,7 +42406,7 @@ $RefreshReg$(_c, "RegistrationView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"fdOAw"}],"chtiO":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"fdOAw","prop-types":"7wKI2","react-bootstrap":"3AD9A","axios":"jo6P5","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"chtiO":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$5d3b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42669,15 +42665,23 @@ var _reactBootstrap = require("react-bootstrap");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _s = $RefreshSig$();
+//Things to do
+//Retrieve user informaiton from local storage
+//Update local storage once user information is updated
 const Profile = ({ user  })=>{
     _s();
-    const [updatedUsername, setUpdatedUsername] = _react.useState();
+    const [updateMode, setUpdateMode] = _react.useState(false);
     const navigate = _reactRouterDom.useNavigate();
     // let Username, Birthday, Email = "Default"
     // let { Username, Birthday, Email } = user.user;
     let Username = "The User";
-    let Birthday = "The Birthday";
+    let Birthday = "2002-05-05";
     let Email = "The Email";
+    let Password = "The Password";
+    const [updatedUsername, setUpdatedUsername] = _react.useState(Username);
+    const [updatedPassword, setUpdatedPassword] = _react.useState(Password);
+    const [updatedEmail, setUpdatedEmail] = _react.useState(Email);
+    const [updatedBirthday, setUpdatedBirthday] = _react.useState(Birthday);
     const deleteAccount = (e)=>{
         e.preventDefault();
         _axiosDefault.default.delete(`https://herokumovieapi.herokuapp.com/users/${user.user.Username}`, {
@@ -42688,11 +42692,14 @@ const Profile = ({ user  })=>{
             const data = response.data;
             localStorage.removeItem("user");
             localStorage.removeItem("token");
-            console.log(data);
             window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
         }).catch((e)=>{
             console.log("error delete the user");
         });
+    };
+    const updateInfo = ()=>{
+        console.log('here');
+        console.log(updatedPassword);
     };
     return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form, {
         children: [
@@ -42700,75 +42707,144 @@ const Profile = ({ user  })=>{
                 children: "Your account information"
             }, void 0, false, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 39,
+                lineNumber: 51,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
+                controlId: "formUpdatedUser",
                 children: [
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
-                        controlId: "formUsername",
                         children: "Username:"
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 41,
+                        lineNumber: 53,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
                         type: "text",
-                        value: Username
+                        value: updateMode ? updatedUsername : Username,
+                        onChange: (e)=>setUpdatedUsername(e.target.value)
+                        ,
+                        readOnly: !updateMode
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 42,
+                        lineNumber: 54,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 40,
+                lineNumber: 52,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h3", {
-                children: "Your account information:"
-            }, void 0, false, {
-                fileName: "src/components/profile/profile.jsx",
-                lineNumber: 44,
-                columnNumber: 7
-            }, undefined),
-            console.log(user),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
+                controlId: "formUpdatedPassword",
                 children: [
-                    "Email: ",
-                    Email
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
+                        children: "Password:"
+                    }, void 0, false, {
+                        fileName: "src/components/profile/profile.jsx",
+                        lineNumber: 61,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
+                        type: "password",
+                        value: updateMode ? updatedPassword : Password,
+                        onChange: (e)=>setUpdatedPassword(e.target.value)
+                        ,
+                        readOnly: !updateMode
+                    }, void 0, false, {
+                        fileName: "src/components/profile/profile.jsx",
+                        lineNumber: 62,
+                        columnNumber: 9
+                    }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 49,
+                lineNumber: 60,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
+                controlId: "formUpdatedEmail",
                 children: [
-                    "Birthday: ",
-                    Birthday
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
+                        children: "Email:"
+                    }, void 0, false, {
+                        fileName: "src/components/profile/profile.jsx",
+                        lineNumber: 69,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
+                        type: "text",
+                        value: updateMode ? updatedEmail : Email,
+                        onChange: (e)=>setUpdatedEmail(e.target.value)
+                        ,
+                        readOnly: !updateMode
+                    }, void 0, false, {
+                        fileName: "src/components/profile/profile.jsx",
+                        lineNumber: 70,
+                        columnNumber: 9
+                    }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 50,
+                lineNumber: 68,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
+                controlId: "formUpdatedBirthday",
+                children: [
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
+                        children: "Birthday:"
+                    }, void 0, false, {
+                        fileName: "src/components/profile/profile.jsx",
+                        lineNumber: 77,
+                        columnNumber: 9
+                    }, undefined),
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
+                        type: "date",
+                        value: updateMode ? updatedBirthday : Birthday,
+                        onChange: (e)=>setUpdatedBirthday(e.target.value)
+                        ,
+                        readOnly: !updateMode
+                    }, void 0, false, {
+                        fileName: "src/components/profile/profile.jsx",
+                        lineNumber: 78,
+                        columnNumber: 9
+                    }, undefined)
+                ]
+            }, void 0, true, {
+                fileName: "src/components/profile/profile.jsx",
+                lineNumber: 76,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                className: updateMode && "d-none",
+                onClick: ()=>setUpdateMode(true)
+                ,
                 children: "Update user information"
             }, void 0, false, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 51,
+                lineNumber: 84,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                className: updateMode && "d-none",
                 type: "submit",
                 onClick: deleteAccount,
                 children: "Delete account"
             }, void 0, false, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 52,
+                lineNumber: 85,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                className: !updateMode && "d-none",
+                onClick: updateInfo,
+                children: "Update"
+            }, void 0, false, {
+                fileName: "src/components/profile/profile.jsx",
+                lineNumber: 88,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
@@ -42778,17 +42854,17 @@ const Profile = ({ user  })=>{
                 children: "Go back"
             }, void 0, false, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 55,
+                lineNumber: 89,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/profile/profile.jsx",
-        lineNumber: 38,
+        lineNumber: 50,
         columnNumber: 5
     }, undefined);
 };
-_s(Profile, "q66il2h9pPRy450dasqSbL6xjJo=", false, function() {
+_s(Profile, "kZMVRmySdyItIZuMtt1K+ASt6NU=", false, function() {
     return [
         _reactRouterDom.useNavigate
     ];

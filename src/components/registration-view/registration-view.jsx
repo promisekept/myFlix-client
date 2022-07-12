@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import { Form } from "react-bootstrap";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 
 const RegistrationView = () => {
@@ -37,7 +35,7 @@ const RegistrationView = () => {
 
   return registrationSuccessful ? (
     <>
-      <p>Registration successful!</p>
+      <Alert>Registration successful!</Alert>
       <Button variant="link" onClick={() => navigate("/")}>
         Log in
       </Button>
