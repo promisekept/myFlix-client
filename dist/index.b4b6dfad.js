@@ -22761,9 +22761,7 @@ const MainView = ()=>{
     };
     return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.BrowserRouter, {
         children: [
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_navbarDefault.default, {
-                isLoggedIn: isLoggedIn
-            }, void 0, false, {
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_navbarDefault.default, {}, void 0, false, {
                 fileName: "src/components/main-view/main-view.jsx",
                 lineNumber: 85,
                 columnNumber: 7
@@ -22782,9 +22780,7 @@ const MainView = ()=>{
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
                         path: "/registration",
-                        element: user ? /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Navigate, {
-                            to: "/movies"
-                        }, void 0, false, void 0, void 0) : /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_registrationViewDefault.default, {}, void 0, false, void 0, void 0)
+                        element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_registrationViewDefault.default, {}, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
                         lineNumber: 88,
@@ -22799,7 +22795,7 @@ const MainView = ()=>{
                         )
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 92,
+                        lineNumber: 93,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22810,7 +22806,7 @@ const MainView = ()=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 102,
+                        lineNumber: 103,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22820,7 +22816,7 @@ const MainView = ()=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 106,
+                        lineNumber: 107,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22830,7 +22826,7 @@ const MainView = ()=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 110,
+                        lineNumber: 111,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22840,7 +22836,7 @@ const MainView = ()=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 111,
+                        lineNumber: 112,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22850,7 +22846,7 @@ const MainView = ()=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 112,
+                        lineNumber: 113,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
@@ -22858,7 +22854,7 @@ const MainView = ()=>{
                         element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_errorJsxDefault.default, {}, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 113,
+                        lineNumber: 114,
                         columnNumber: 9
                     }, undefined)
                 ]
@@ -42015,10 +42011,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _form = require("react-bootstrap/Form");
-var _formDefault = parcelHelpers.interopDefault(_form);
-var _button = require("react-bootstrap/Button");
-var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _reactBootstrap = require("react-bootstrap");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _reactRouterDom = require("react-router-dom");
@@ -42036,22 +42029,8 @@ const LoginView = ({ onLoggedIn  })=>{
         // onLoggedIn(username);
         /* Send a request to the server for authentication */ if (!username) setUsernameErr("Username Required");
         else if (username.length < 5) setUsernameErr("Username must be at least 5 characters long");
-        else if (!password) setPasswordErr(/*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
-            className: "text-danger",
-            children: "Password Required"
-        }, void 0, false, {
-            fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 26,
-            columnNumber: 22
-        }, undefined));
-        else if (password.length < 4) setPasswordErr(/*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
-            className: "text-danger",
-            children: "Password must be at least 4 characters long"
-        }, void 0, false, {
-            fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 29,
-            columnNumber: 9
-        }, undefined));
+        else if (!password) setPasswordErr("Password Required");
+        else if (password.length < 4) setPasswordErr("Password must be at least 4 characters long");
         else _axiosDefault.default.post("https://herokumovieapi.herokuapp.com/login", {
             Username: username,
             Password: password
@@ -42063,19 +42042,19 @@ const LoginView = ({ onLoggedIn  })=>{
         });
     };
     return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
-        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default, {
+        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form, {
             children: [
-                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Group, {
+                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
                     controlId: "formUsername",
                     children: [
-                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Label, {
+                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
                             children: "Username:"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 52,
+                            lineNumber: 47,
                             columnNumber: 11
                         }, undefined),
-                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Control, {
+                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
                             type: "text",
                             value: username,
                             onChange: (e)=>{
@@ -42083,70 +42062,70 @@ const LoginView = ({ onLoggedIn  })=>{
                             }
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 53,
+                            lineNumber: 48,
                             columnNumber: 11
                         }, undefined),
-                        usernameErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
+                        usernameErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Alert, {
                             className: "text-danger",
                             children: usernameErr
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 60,
+                            lineNumber: 55,
                             columnNumber: 27
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 51,
+                    lineNumber: 46,
                     columnNumber: 9
                 }, undefined),
-                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Group, {
+                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
                     controlId: "formPassword",
                     children: [
-                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Label, {
+                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Label, {
                             children: "Password:"
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 63,
+                            lineNumber: 58,
                             columnNumber: 11
                         }, undefined),
-                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_formDefault.default.Control, {
+                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
                             type: "password",
                             value: password,
                             onChange: (e)=>setPassword(e.target.value)
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 64,
+                            lineNumber: 59,
                             columnNumber: 11
                         }, undefined),
-                        passwordErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV("p", {
+                        passwordErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Alert, {
                             className: "text-danger",
                             children: passwordErr
                         }, void 0, false, {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 69,
+                            lineNumber: 64,
                             columnNumber: 27
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 62,
+                    lineNumber: 57,
                     columnNumber: 9
                 }, undefined),
-                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_buttonDefault.default, {
+                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
                     variant: "primary",
                     type: "submit",
                     onClick: handleSubmit,
                     children: "Submit"
                 }, void 0, false, {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 71,
+                    lineNumber: 66,
                     columnNumber: 9
                 }, undefined)
             ]
         }, void 0, true, {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 50,
+            lineNumber: 45,
             columnNumber: 7
         }, undefined)
     }, void 0, false);
@@ -42208,7 +42187,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap/Form":"iBZ80","react-bootstrap/Button":"aPzUt","axios":"jo6P5","react-router-dom":"fdOAw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"3U8r7":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","axios":"jo6P5","react-router-dom":"fdOAw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A"}],"3U8r7":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$789c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42234,11 +42213,22 @@ const RegistrationView = ()=>{
     const [newEmail, setNewEmail] = _react.useState("");
     const [newBirthday, setNewBirthday] = _react.useState("");
     const [registrationSuccessful, setRegistratonSuccessful] = _react.useState(false);
+    const [newUsernameErr, setNewUsernameErr] = _react.useState("");
+    const [newPasswordErr, setNewPasswordErr] = _react.useState("");
+    const [newEmailErr, setNewEmailErr] = _react.useState("");
+    const [newBirthdayErr, setNewBirthdayErr] = _react.useState("");
     const navigate = _reactRouterDom.useNavigate();
     const handleRegister = (e)=>{
         e.preventDefault();
         console.log(newUsername, newPassword, newEmail, newBirthday);
-        _axiosDefault.default.post("https://herokumovieapi.herokuapp.com/users", {
+        if (!newUsername) setNewUsernameErr("New Username Required");
+        else if (newUsername.length < 5) setNewUsernameErr("Username must be at least 5 characters long");
+        else if (!newPassword) setNewPasswordErr("Password Required");
+        else if (newPassword.length < 4) setNewPasswordErr("Password must be at least 4 characters long");
+        else if (!newEmail) setNewEmailErr("Email is required");
+        else if (newEmail.indexOf("@") === -1) setNewEmailErr("Please enter a valid email");
+        else if (!newBirthday) setNewBirthdayErr("Birthday is required");
+        else _axiosDefault.default.post("https://herokumovieapi.herokuapp.com/users", {
             Username: newUsername,
             Password: newPassword,
             Email: newEmail,
@@ -42258,7 +42248,7 @@ const RegistrationView = ()=>{
                 children: "Registration successful!"
             }, void 0, false, {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 38,
+                lineNumber: 58,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
@@ -42268,7 +42258,7 @@ const RegistrationView = ()=>{
                 children: "Log in"
             }, void 0, false, {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 39,
+                lineNumber: 59,
                 columnNumber: 7
             }, undefined)
         ]
@@ -42281,7 +42271,7 @@ const RegistrationView = ()=>{
                         children: "New User:"
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 46,
+                        lineNumber: 66,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
@@ -42290,13 +42280,21 @@ const RegistrationView = ()=>{
                         onChange: (e)=>setNewUsername(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 47,
+                        lineNumber: 67,
                         columnNumber: 9
+                    }, undefined),
+                    newUsernameErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Alert, {
+                        className: "text-danger",
+                        children: newUsernameErr
+                    }, void 0, false, {
+                        fileName: "src/components/registration-view/registration-view.jsx",
+                        lineNumber: 73,
+                        columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 45,
+                lineNumber: 65,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
@@ -42306,7 +42304,7 @@ const RegistrationView = ()=>{
                         children: "New Password:"
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 54,
+                        lineNumber: 77,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
@@ -42315,13 +42313,21 @@ const RegistrationView = ()=>{
                         onChange: (e)=>setNewPassword(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 55,
+                        lineNumber: 78,
                         columnNumber: 9
+                    }, undefined),
+                    newPasswordErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Alert, {
+                        className: "text-danger",
+                        children: newPasswordErr
+                    }, void 0, false, {
+                        fileName: "src/components/registration-view/registration-view.jsx",
+                        lineNumber: 84,
+                        columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 53,
+                lineNumber: 76,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
@@ -42330,7 +42336,7 @@ const RegistrationView = ()=>{
                         children: "Email:"
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 62,
+                        lineNumber: 88,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
@@ -42339,13 +42345,21 @@ const RegistrationView = ()=>{
                         onChange: (e)=>setNewEmail(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 63,
+                        lineNumber: 89,
                         columnNumber: 9
+                    }, undefined),
+                    newEmailErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Alert, {
+                        className: "text-danger",
+                        children: newEmailErr
+                    }, void 0, false, {
+                        fileName: "src/components/registration-view/registration-view.jsx",
+                        lineNumber: 94,
+                        columnNumber: 25
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 61,
+                lineNumber: 87,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
@@ -42354,7 +42368,7 @@ const RegistrationView = ()=>{
                         children: "Birthday:"
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 70,
+                        lineNumber: 97,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
@@ -42363,13 +42377,21 @@ const RegistrationView = ()=>{
                         onChange: (e)=>setNewBirthday(e.target.value)
                     }, void 0, false, {
                         fileName: "src/components/registration-view/registration-view.jsx",
-                        lineNumber: 71,
+                        lineNumber: 98,
                         columnNumber: 9
+                    }, undefined),
+                    newBirthdayErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Alert, {
+                        className: "text-danger",
+                        children: newBirthdayErr
+                    }, void 0, false, {
+                        fileName: "src/components/registration-view/registration-view.jsx",
+                        lineNumber: 104,
+                        columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 69,
+                lineNumber: 96,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
@@ -42378,17 +42400,26 @@ const RegistrationView = ()=>{
                 children: "Submit"
             }, void 0, false, {
                 fileName: "src/components/registration-view/registration-view.jsx",
-                lineNumber: 77,
+                lineNumber: 107,
+                columnNumber: 7
+            }, undefined),
+            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                onClick: ()=>navigate("/")
+                ,
+                children: "Go back"
+            }, void 0, false, {
+                fileName: "src/components/registration-view/registration-view.jsx",
+                lineNumber: 110,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/registration-view/registration-view.jsx",
-        lineNumber: 44,
+        lineNumber: 64,
         columnNumber: 5
     }, undefined);
 };
-_s(RegistrationView, "Bbqapxe/fcIU2WJ13kdNdrmgBXg=", false, function() {
+_s(RegistrationView, "fEVYawO6tW+LLMWNGekY7/27mpA=", false, function() {
     return [
         _reactRouterDom.useNavigate
     ];
@@ -42510,16 +42541,16 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRouterDom = require("react-router-dom");
-const Navbar = ({ isLoggedIn  })=>{
+const Navbar = ()=>{
     return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("nav", {
-        children: isLoggedIn ? /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
+        children: localStorage.getItem("user") ? /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
             children: [
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.NavLink, {
                     to: "/movies",
                     children: "Home"
                 }, void 0, false, {
                     fileName: "src/components/navbar/navbar.js",
-                    lineNumber: 10,
+                    lineNumber: 11,
                     columnNumber: 11
                 }, undefined),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.NavLink, {
@@ -42527,7 +42558,7 @@ const Navbar = ({ isLoggedIn  })=>{
                     children: "Profile"
                 }, void 0, false, {
                     fileName: "src/components/navbar/navbar.js",
-                    lineNumber: 11,
+                    lineNumber: 12,
                     columnNumber: 11
                 }, undefined),
                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.NavLink, {
@@ -42535,7 +42566,7 @@ const Navbar = ({ isLoggedIn  })=>{
                     children: "Sign out"
                 }, void 0, false, {
                     fileName: "src/components/navbar/navbar.js",
-                    lineNumber: 12,
+                    lineNumber: 13,
                     columnNumber: 11
                 }, undefined)
             ]
@@ -42544,7 +42575,7 @@ const Navbar = ({ isLoggedIn  })=>{
             children: "Sign up"
         }, void 0, false, {
             fileName: "src/components/navbar/navbar.js",
-            lineNumber: 15,
+            lineNumber: 16,
             columnNumber: 9
         }, undefined)
     }, void 0, false, {
@@ -42672,16 +42703,18 @@ const Profile = ({ user  })=>{
     _s();
     const [updateMode, setUpdateMode] = _react.useState(false);
     const navigate = _reactRouterDom.useNavigate();
-    // let Username, Birthday, Email = "Default"
-    // let { Username, Birthday, Email } = user.user;
-    let Username = "The User";
-    let Birthday = "2002-05-05";
-    let Email = "The Email";
-    let Password = "The Password";
+    let { Username , Birthday , Email  } = user.user;
+    // let Username = "The User";
+    // let Birthday = "2003-02-02T00:00:00.000Z";
+    // let Email = "The Email";
     const [updatedUsername, setUpdatedUsername] = _react.useState(Username);
-    const [updatedPassword, setUpdatedPassword] = _react.useState(Password);
+    const [updatedPassword, setUpdatedPassword] = _react.useState("");
     const [updatedEmail, setUpdatedEmail] = _react.useState(Email);
-    const [updatedBirthday, setUpdatedBirthday] = _react.useState(Birthday);
+    const [updatedBirthday, setUpdatedBirthday] = _react.useState(Birthday.substring(0, 10));
+    const [updatedUsernameErr, setUpdatedUsernameErr] = _react.useState("");
+    const [updatedPasswordErr, setUpdatedPasswordErr] = _react.useState("");
+    const [updatedEmailErr, setUpdatedEmailErr] = _react.useState("");
+    const [updatedBirthdayErr, setUpdatedBirthdayErr] = _react.useState("");
     const deleteAccount = (e)=>{
         e.preventDefault();
         _axiosDefault.default.delete(`https://herokumovieapi.herokuapp.com/users/${user.user.Username}`, {
@@ -42697,9 +42730,33 @@ const Profile = ({ user  })=>{
             console.log("error delete the user");
         });
     };
-    const updateInfo = ()=>{
-        console.log('here');
-        console.log(updatedPassword);
+    const updateInfo = (e)=>{
+        e.preventDefault();
+        console.log(updatedUsername, updatedPassword, updatedEmail, updatedBirthday);
+        if (!updatedUsername) setUpdatedUsernameErr("Username required");
+        else if (updatedUsername.length < 5) setUpdatedUsernameErr("Username must be at least 5 characters long");
+        else if (!updatedPassword) setUpdatedPasswordErr("Password required");
+        else if (updatedPassword.length < 4) setUpdatedPasswordErr("Password must be at least 4 characters long");
+        else if (!updatedEmail) setUpdatedEmailErr("Email required");
+        else if (updatedEmail.indexOf("@") === -1) setUpdatedEmailErr("Please enter a valid email");
+        else if (!updatedBirthday) setUpdatedBirthdayErr("Birtdhay is requied");
+        else {
+            console.log("info updated");
+            setUpdateMode(false);
+            setUpdatedUsernameErr("");
+            setUpdatedPasswordErr("");
+            setUpdatedEmailErr("");
+            setUpdatedBirthdayErr("");
+            _axiosDefault.default.put(`https://herokumovieapi.herokuapp.com/users/${Username}`, {
+                Username: updatedUsername,
+                Password: updatedPassword,
+                Email: updatedEmail,
+                Birthday: updatedBirthday
+            }).then((response)=>{
+                const data = response.data;
+                console.log(data);
+            });
+        }
     };
     return /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form, {
         children: [
@@ -42707,7 +42764,7 @@ const Profile = ({ user  })=>{
                 children: "Your account information"
             }, void 0, false, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 51,
+                lineNumber: 93,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
@@ -42717,24 +42774,32 @@ const Profile = ({ user  })=>{
                         children: "Username:"
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 53,
+                        lineNumber: 95,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
                         type: "text",
-                        value: updateMode ? updatedUsername : Username,
+                        value: updatedUsername,
                         onChange: (e)=>setUpdatedUsername(e.target.value)
                         ,
                         readOnly: !updateMode
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 54,
+                        lineNumber: 96,
                         columnNumber: 9
+                    }, undefined),
+                    updatedUsernameErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Alert, {
+                        className: "text-danger",
+                        children: updatedUsernameErr
+                    }, void 0, false, {
+                        fileName: "src/components/profile/profile.jsx",
+                        lineNumber: 103,
+                        columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 52,
+                lineNumber: 94,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
@@ -42744,24 +42809,32 @@ const Profile = ({ user  })=>{
                         children: "Password:"
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 61,
+                        lineNumber: 107,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
                         type: "password",
-                        value: updateMode ? updatedPassword : Password,
+                        value: updatedPassword,
                         onChange: (e)=>setUpdatedPassword(e.target.value)
                         ,
                         readOnly: !updateMode
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 62,
+                        lineNumber: 108,
                         columnNumber: 9
+                    }, undefined),
+                    updatedPasswordErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Alert, {
+                        className: "text-danger",
+                        children: updatedPasswordErr
+                    }, void 0, false, {
+                        fileName: "src/components/profile/profile.jsx",
+                        lineNumber: 115,
+                        columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 60,
+                lineNumber: 106,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
@@ -42771,24 +42844,32 @@ const Profile = ({ user  })=>{
                         children: "Email:"
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 69,
+                        lineNumber: 119,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
                         type: "text",
-                        value: updateMode ? updatedEmail : Email,
+                        value: updatedEmail,
                         onChange: (e)=>setUpdatedEmail(e.target.value)
                         ,
                         readOnly: !updateMode
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 70,
+                        lineNumber: 120,
                         columnNumber: 9
+                    }, undefined),
+                    updatedEmailErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Alert, {
+                        className: "text-danger",
+                        children: updatedEmailErr
+                    }, void 0, false, {
+                        fileName: "src/components/profile/profile.jsx",
+                        lineNumber: 127,
+                        columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 68,
+                lineNumber: 118,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
@@ -42798,73 +42879,94 @@ const Profile = ({ user  })=>{
                         children: "Birthday:"
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 77,
+                        lineNumber: 131,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
                         type: "date",
-                        value: updateMode ? updatedBirthday : Birthday,
+                        value: updatedBirthday,
                         onChange: (e)=>setUpdatedBirthday(e.target.value)
                         ,
                         readOnly: !updateMode
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 78,
+                        lineNumber: 132,
                         columnNumber: 9
+                    }, undefined),
+                    updatedBirthdayErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Alert, {
+                        className: "text-danger",
+                        children: updatedBirthdayErr
+                    }, void 0, false, {
+                        fileName: "src/components/profile/profile.jsx",
+                        lineNumber: 139,
+                        columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 76,
+                lineNumber: 130,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
-                className: updateMode && "d-none",
-                onClick: ()=>setUpdateMode(true)
-                ,
-                children: "Update user information"
-            }, void 0, false, {
-                fileName: "src/components/profile/profile.jsx",
-                lineNumber: 84,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
-                className: updateMode && "d-none",
-                type: "submit",
-                onClick: deleteAccount,
-                children: "Delete account"
-            }, void 0, false, {
-                fileName: "src/components/profile/profile.jsx",
-                lineNumber: 85,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
-                className: !updateMode && "d-none",
-                onClick: updateInfo,
-                children: "Update"
-            }, void 0, false, {
-                fileName: "src/components/profile/profile.jsx",
-                lineNumber: 88,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
-                variant: "link",
-                onClick: ()=>navigate(-1)
-                ,
-                children: "Go back"
-            }, void 0, false, {
-                fileName: "src/components/profile/profile.jsx",
-                lineNumber: 89,
-                columnNumber: 7
-            }, undefined)
+            updateMode ? /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
+                children: [
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                        onClick: updateInfo,
+                        children: "Update"
+                    }, void 0, false, {
+                        fileName: "src/components/profile/profile.jsx",
+                        lineNumber: 144,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                        onClick: ()=>setUpdateMode(false)
+                        ,
+                        children: "Cancel"
+                    }, void 0, false, {
+                        fileName: "src/components/profile/profile.jsx",
+                        lineNumber: 145,
+                        columnNumber: 11
+                    }, undefined)
+                ]
+            }, void 0, true) : /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
+                children: [
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                        onClick: ()=>setUpdateMode(true)
+                        ,
+                        children: "Update user information"
+                    }, void 0, false, {
+                        fileName: "src/components/profile/profile.jsx",
+                        lineNumber: 149,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                        type: "submit",
+                        onClick: deleteAccount,
+                        children: "Delete account"
+                    }, void 0, false, {
+                        fileName: "src/components/profile/profile.jsx",
+                        lineNumber: 152,
+                        columnNumber: 11
+                    }, undefined),
+                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                        variant: "link",
+                        onClick: ()=>navigate(-1)
+                        ,
+                        children: "Go back"
+                    }, void 0, false, {
+                        fileName: "src/components/profile/profile.jsx",
+                        lineNumber: 155,
+                        columnNumber: 11
+                    }, undefined)
+                ]
+            }, void 0, true)
         ]
     }, void 0, true, {
         fileName: "src/components/profile/profile.jsx",
-        lineNumber: 50,
+        lineNumber: 92,
         columnNumber: 5
     }, undefined);
 };
-_s(Profile, "kZMVRmySdyItIZuMtt1K+ASt6NU=", false, function() {
+_s(Profile, "HXFAexoBjFxMAnw2vOh8AtOXEZ8=", false, function() {
     return [
         _reactRouterDom.useNavigate
     ];

@@ -1,11 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Navbar = ({ isLoggedIn }) => {
+const Navbar = () => {
   return (
     <nav>
-      {/* {localStorage.getItem("user") ? ( */}
-      {isLoggedIn ? (
+      {/* {console.log(localStorage.getItem("user"))} */}
+      {/* {isLoggedIn ? ( */}
+      {localStorage.getItem("user") ? (
         <>
           <NavLink to="/movies">Home</NavLink>
           <NavLink to="/profile-view">Profile</NavLink>

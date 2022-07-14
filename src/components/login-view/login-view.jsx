@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import { Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -23,13 +22,9 @@ const LoginView = ({ onLoggedIn }) => {
     } else if (username.length < 5) {
       setUsernameErr("Username must be at least 5 characters long");
     } else if (!password) {
-      setPasswordErr(<p className="text-danger">Password Required</p>);
+      setPasswordErr("Password Required");
     } else if (password.length < 4) {
-      setPasswordErr(
-        <p className="text-danger">
-          Password must be at least 4 characters long
-        </p>
-      );
+      setPasswordErr("Password must be at least 4 characters long");
     } else {
       axios
         .post("https://herokumovieapi.herokuapp.com/login", {
@@ -57,7 +52,7 @@ const LoginView = ({ onLoggedIn }) => {
               setUsername(e.target.value);
             }}
           />
-          {usernameErr && <p className="text-danger">{usernameErr}</p>}
+          {usernameErr && <Alert className="text-danger">{usernameErr}</Alert>}
         </Form.Group>
         <Form.Group controlId="formPassword">
           <Form.Label>Password:</Form.Label>
@@ -66,7 +61,7 @@ const LoginView = ({ onLoggedIn }) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {passwordErr && <p className="text-danger">{passwordErr}</p>}
+          {passwordErr && <Alert className="text-danger">{passwordErr}</Alert>}
         </Form.Group>
         <Button variant="primary" type="submit" onClick={handleSubmit}>
           Submit

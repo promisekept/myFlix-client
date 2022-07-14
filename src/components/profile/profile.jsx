@@ -10,17 +10,21 @@ import axios from "axios";
 const Profile = ({ user }) => {
   const [updateMode, setUpdateMode] = useState(false);
   const navigate = useNavigate();
-  // let Username, Birthday, Email = "Default"
-  // let { Username, Birthday, Email } = user.user;
-  let Username = "The User";
-  let Birthday = "2002-05-05";
-  let Email = "The Email";
-  let Password = "The Password";
+  let { Username, Birthday, Email } = user.user;
+  // let Username = "The User";
+  // let Birthday = "2003-02-02T00:00:00.000Z";
+  // let Email = "The Email";
 
   const [updatedUsername, setUpdatedUsername] = useState(Username);
-  const [updatedPassword, setUpdatedPassword] = useState(Password);
+  const [updatedPassword, setUpdatedPassword] = useState("");
   const [updatedEmail, setUpdatedEmail] = useState(Email);
-  const [updatedBirthday, setUpdatedBirthday] = useState(Birthday);
+  const [updatedBirthday, setUpdatedBirthday] = useState(
+    Birthday.substring(0, 10)
+  );
+  const [updatedUsernameErr, setUpdatedUsernameErr] = useState("");
+  const [updatedPasswordErr, setUpdatedPasswordErr] = useState("");
+  const [updatedEmailErr, setUpdatedEmailErr] = useState("");
+  const [updatedBirthdayErr, setUpdatedBirthdayErr] = useState("");
   const deleteAccount = (e) => {
     e.preventDefault();
     axios
@@ -41,10 +45,48 @@ const Profile = ({ user }) => {
       });
   };
 
-  const updateInfo = () => {
-    console.log('here')
-    console.log(updatedPassword)
-  }
+  const updateInfo = (e) => {
+    e.preventDefault();
+    console.log(
+      updatedUsername,
+      updatedPassword,
+      updatedEmail,
+      updatedBirthday
+    );
+    if (!updatedUsername) {
+      setUpdatedUsernameErr("Username required");
+    } else if (updatedUsername.length < 5) {
+      setUpdatedUsernameErr("Username must be at least 5 characters long");
+    } else if (!updatedPassword) {
+      setUpdatedPasswordErr("Password required");
+    } else if (updatedPassword.length < 4) {
+      setUpdatedPasswordErr("Password must be at least 4 characters long");
+    } else if (!updatedEmail) {
+      setUpdatedEmailErr("Email required");
+    } else if (updatedEmail.indexOf("@") === -1) {
+      setUpdatedEmailErr("Please enter a valid email");
+    } else if (!updatedBirthday) {
+      setUpdatedBirthdayErr("Birtdhay is requied");
+    } else {
+      console.log("info updated");
+      setUpdateMode(false);
+      setUpdatedUsernameErr("");
+      setUpdatedPasswordErr("");
+      setUpdatedEmailErr("");
+      setUpdatedBirthdayErr("");
+      axios
+        .put(`https://herokumovieapi.herokuapp.com/users/${Username}`, {
+          Username: updatedUsername,
+          Password: updatedPassword,
+          Email: updatedEmail,
+          Birthday: updatedBirthday,
+        })
+        .then((response) => {
+          const data = response.data;
+          console.log(data);
+        });
+    }
+  };
 
   return (
     <Form>
@@ -53,43 +95,69 @@ const Profile = ({ user }) => {
         <Form.Label>Username:</Form.Label>
         <Form.Control
           type="text"
-          value={updateMode ? updatedUsername : Username}
+          value={updatedUsername}
           onChange={(e) => setUpdatedUsername(e.target.value)}
-          readOnly={!updateMode} />
+          readOnly={!updateMode}
+        />
+        {updatedUsernameErr && (
+          <Alert className="text-danger">{updatedUsernameErr}</Alert>
+        )}
       </Form.Group>
       <Form.Group controlId="formUpdatedPassword">
         <Form.Label>Password:</Form.Label>
         <Form.Control
           type="password"
-          value={updateMode ? updatedPassword : Password}
+          value={updatedPassword}
           onChange={(e) => setUpdatedPassword(e.target.value)}
-          readOnly={!updateMode} />
+          readOnly={!updateMode}
+        />
+        {updatedPasswordErr && (
+          <Alert className="text-danger">{updatedPasswordErr}</Alert>
+        )}
       </Form.Group>
       <Form.Group controlId="formUpdatedEmail">
         <Form.Label>Email:</Form.Label>
         <Form.Control
           type="text"
-          value={updateMode ? updatedEmail : Email}
+          value={updatedEmail}
           onChange={(e) => setUpdatedEmail(e.target.value)}
-          readOnly={!updateMode} />
+          readOnly={!updateMode}
+        />
+        {updatedEmailErr && (
+          <Alert className="text-danger">{updatedEmailErr}</Alert>
+        )}
       </Form.Group>
       <Form.Group controlId="formUpdatedBirthday">
         <Form.Label>Birthday:</Form.Label>
         <Form.Control
           type="date"
-          value={updateMode ? updatedBirthday : Birthday}
+          value={updatedBirthday}
           onChange={(e) => setUpdatedBirthday(e.target.value)}
-          readOnly={!updateMode} />
+          readOnly={!updateMode}
+        />
+        {updatedBirthdayErr && (
+          <Alert className="text-danger">{updatedBirthdayErr}</Alert>
+        )}
       </Form.Group>
-      <Button className={updateMode && "d-none"} onClick={() => setUpdateMode(true)}>Update user information</Button>
-      <Button className={updateMode && "d-none"} type="submit" onClick={deleteAccount}>
-        Delete account
-      </Button>
-      <Button className={!updateMode && "d-none"} onClick={updateInfo}>Update</Button>
-      <Button variant="link" onClick={() => navigate(-1)}>
-        Go back
-      </Button>
-    </Form >
+      {updateMode ? (
+        <>
+          <Button onClick={updateInfo}>Update</Button>
+          <Button onClick={() => setUpdateMode(false)}>Cancel</Button>
+        </>
+      ) : (
+        <>
+          <Button onClick={() => setUpdateMode(true)}>
+            Update user information
+          </Button>
+          <Button type="submit" onClick={deleteAccount}>
+            Delete account
+          </Button>
+          <Button variant="link" onClick={() => navigate(-1)}>
+            Go back
+          </Button>
+        </>
+      )}
+    </Form>
   );
 };
 

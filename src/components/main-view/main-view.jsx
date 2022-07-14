@@ -82,12 +82,13 @@ const MainView = () => {
 
   return (
     <Router>
-      <Navbar isLoggedIn={isLoggedIn} />
+      <Navbar />
       <Routes>
         <Route path="/" element={<LoginView onLoggedIn={onLoggedIn} />} />
         <Route
           path="/registration"
-          element={user ? <Navigate to="/movies" /> : <RegView />}
+          element={<RegView />}
+          // element={user ? <Navigate to="/movies" /> : <RegView />}
         />
         <Route
           path="/movies"
