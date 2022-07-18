@@ -25,17 +25,17 @@ const Profile = ({ user }) => {
   const [updatedPasswordErr, setUpdatedPasswordErr] = useState("");
   const [updatedEmailErr, setUpdatedEmailErr] = useState("");
   const [updatedBirthdayErr, setUpdatedBirthdayErr] = useState("");
+  const token = localStorage.getItem("token");
   const deleteAccount = (e) => {
     e.preventDefault();
     axios
       .delete(
-        `https://herokumovieapi.herokuapp.com/users/${user.user.Username}`,
+        `https://herokumovieapi.herokuapp.com/users/${Username}`,
         {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+          headers: { Authorization: `Bearer ${token}` },
         }
       )
       .then((response) => {
-        const data = response.data;
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
@@ -75,15 +75,19 @@ const Profile = ({ user }) => {
       setUpdatedEmailErr("");
       setUpdatedBirthdayErr("");
       axios
-        .put(`https://herokumovieapi.herokuapp.com/users/${Username}`, {
-          Username: updatedUsername,
-          Password: updatedPassword,
-          Email: updatedEmail,
-          Birthday: updatedBirthday,
+        .put(`https://herokumovieapi.herokuapp.com/users/${Username}`,
+          {
+            Username: updatedUsername,
+            Password: updatedPassword,
+            Email: updatedEmail,
+            Birthday: updatedBirthday,
+          }, {
+          headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
           const data = response.data;
           console.log(data);
+          localStorage.setItem("user", updatedUsername);
         });
     }
   };

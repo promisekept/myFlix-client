@@ -42187,7 +42187,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","axios":"jo6P5","react-router-dom":"fdOAw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-bootstrap":"3AD9A"}],"3U8r7":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","prop-types":"7wKI2","react-bootstrap":"3AD9A","axios":"jo6P5","react-router-dom":"fdOAw","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"3U8r7":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$789c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -42715,14 +42715,14 @@ const Profile = ({ user  })=>{
     const [updatedPasswordErr, setUpdatedPasswordErr] = _react.useState("");
     const [updatedEmailErr, setUpdatedEmailErr] = _react.useState("");
     const [updatedBirthdayErr, setUpdatedBirthdayErr] = _react.useState("");
+    const token = localStorage.getItem("token");
     const deleteAccount = (e)=>{
         e.preventDefault();
-        _axiosDefault.default.delete(`https://herokumovieapi.herokuapp.com/users/${user.user.Username}`, {
+        _axiosDefault.default.delete(`https://herokumovieapi.herokuapp.com/users/${Username}`, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`
+                Authorization: `Bearer ${token}`
             }
         }).then((response)=>{
-            const data = response.data;
             localStorage.removeItem("user");
             localStorage.removeItem("token");
             window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
@@ -42752,9 +42752,14 @@ const Profile = ({ user  })=>{
                 Password: updatedPassword,
                 Email: updatedEmail,
                 Birthday: updatedBirthday
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             }).then((response)=>{
                 const data = response.data;
                 console.log(data);
+                localStorage.setItem("user", updatedUsername);
             });
         }
     };
@@ -42764,7 +42769,7 @@ const Profile = ({ user  })=>{
                 children: "Your account information"
             }, void 0, false, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 93,
+                lineNumber: 97,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
@@ -42774,7 +42779,7 @@ const Profile = ({ user  })=>{
                         children: "Username:"
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 95,
+                        lineNumber: 99,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
@@ -42785,7 +42790,7 @@ const Profile = ({ user  })=>{
                         readOnly: !updateMode
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 96,
+                        lineNumber: 100,
                         columnNumber: 9
                     }, undefined),
                     updatedUsernameErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Alert, {
@@ -42793,13 +42798,13 @@ const Profile = ({ user  })=>{
                         children: updatedUsernameErr
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 103,
+                        lineNumber: 107,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 94,
+                lineNumber: 98,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
@@ -42809,7 +42814,7 @@ const Profile = ({ user  })=>{
                         children: "Password:"
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 107,
+                        lineNumber: 111,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
@@ -42820,7 +42825,7 @@ const Profile = ({ user  })=>{
                         readOnly: !updateMode
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 108,
+                        lineNumber: 112,
                         columnNumber: 9
                     }, undefined),
                     updatedPasswordErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Alert, {
@@ -42828,13 +42833,13 @@ const Profile = ({ user  })=>{
                         children: updatedPasswordErr
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 115,
+                        lineNumber: 119,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 106,
+                lineNumber: 110,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
@@ -42844,7 +42849,7 @@ const Profile = ({ user  })=>{
                         children: "Email:"
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 119,
+                        lineNumber: 123,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
@@ -42855,7 +42860,7 @@ const Profile = ({ user  })=>{
                         readOnly: !updateMode
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 120,
+                        lineNumber: 124,
                         columnNumber: 9
                     }, undefined),
                     updatedEmailErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Alert, {
@@ -42863,13 +42868,13 @@ const Profile = ({ user  })=>{
                         children: updatedEmailErr
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 127,
+                        lineNumber: 131,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 118,
+                lineNumber: 122,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Group, {
@@ -42879,7 +42884,7 @@ const Profile = ({ user  })=>{
                         children: "Birthday:"
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 131,
+                        lineNumber: 135,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
@@ -42890,7 +42895,7 @@ const Profile = ({ user  })=>{
                         readOnly: !updateMode
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 132,
+                        lineNumber: 136,
                         columnNumber: 9
                     }, undefined),
                     updatedBirthdayErr && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Alert, {
@@ -42898,13 +42903,13 @@ const Profile = ({ user  })=>{
                         children: updatedBirthdayErr
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 139,
+                        lineNumber: 143,
                         columnNumber: 11
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/components/profile/profile.jsx",
-                lineNumber: 130,
+                lineNumber: 134,
                 columnNumber: 7
             }, undefined),
             updateMode ? /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
@@ -42914,7 +42919,7 @@ const Profile = ({ user  })=>{
                         children: "Update"
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 144,
+                        lineNumber: 148,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
@@ -42923,7 +42928,7 @@ const Profile = ({ user  })=>{
                         children: "Cancel"
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 145,
+                        lineNumber: 149,
                         columnNumber: 11
                     }, undefined)
                 ]
@@ -42935,7 +42940,7 @@ const Profile = ({ user  })=>{
                         children: "Update user information"
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 149,
+                        lineNumber: 153,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
@@ -42944,7 +42949,7 @@ const Profile = ({ user  })=>{
                         children: "Delete account"
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 152,
+                        lineNumber: 156,
                         columnNumber: 11
                     }, undefined),
                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
@@ -42954,7 +42959,7 @@ const Profile = ({ user  })=>{
                         children: "Go back"
                     }, void 0, false, {
                         fileName: "src/components/profile/profile.jsx",
-                        lineNumber: 155,
+                        lineNumber: 159,
                         columnNumber: 11
                     }, undefined)
                 ]
@@ -42962,7 +42967,7 @@ const Profile = ({ user  })=>{
         ]
     }, void 0, true, {
         fileName: "src/components/profile/profile.jsx",
-        lineNumber: 92,
+        lineNumber: 96,
         columnNumber: 5
     }, undefined);
 };
