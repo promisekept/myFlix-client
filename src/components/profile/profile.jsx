@@ -1,13 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useRoutes } from "react-router-dom";
-import { Form, Button, Alert } from "react-bootstrap";
-import axios from "axios";
+import { Form, Button, Alert, Container, Row, Col } from "react-bootstrap";
+import axios, { AxiosError } from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  solid,
+  regular,
+  brands,
+} from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 
 //Things to do
 //Retrieve user informaiton from local storage
 //Update local storage once user information is updated
 
-const Profile = ({ user }) => {
+const Profile = ({ user, movies }) => {
+  const [favMovies, setFavMovies] = useState(
+    user.user.FavoriteMovies.map((favMovie) => favMovie)
+  );
+  // console.log(movies);
   const [updateMode, setUpdateMode] = useState(false);
   const navigate = useNavigate();
   let { Username, Birthday, Email } = user.user;
@@ -26,22 +36,40 @@ const Profile = ({ user }) => {
   const [updatedEmailErr, setUpdatedEmailErr] = useState("");
   const [updatedBirthdayErr, setUpdatedBirthdayErr] = useState("");
   const token = localStorage.getItem("token");
-  const deleteAccount = (e) => {
-    e.preventDefault();
+
+  const getMovieTitle = (movieId) => {
+    return movies.filter((movie) => movie._id === movieId && movie.Title)[0]
+      .Title;
+  };
+  const deleteFavMovie = (movieId) => {
+    setFavMovies(favMovies.filter((favMovieId) => favMovieId !== movieId));
     axios
       .delete(
-        `https://herokumovieapi.herokuapp.com/users/${Username}`,
+        `https://herokumovieapi.herokuapp.com/users/${updatedUsername}/movies/${movieId}`,
         {
           headers: { Authorization: `Bearer ${token}` },
         }
       )
+      .then((response) => {
+        console.log(`The deleted movie ID: ${movieId}`);
+      })
+      .catch((e) => {
+        console.log("error deleting movie");
+      });
+  };
+  const deleteAccount = (e) => {
+    e.preventDefault();
+    axios
+      .delete(`https://herokumovieapi.herokuapp.com/users/${updatedUsername}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
       .then((response) => {
         localStorage.removeItem("user");
         localStorage.removeItem("token");
         window.open("/", "_self"); // the second argument '_self' is necessary so that the page will open in the current tab
       })
       .catch((e) => {
-        console.log("error delete the user");
+        console.log("error deleting the user");
       });
   };
 
@@ -75,15 +103,18 @@ const Profile = ({ user }) => {
       setUpdatedEmailErr("");
       setUpdatedBirthdayErr("");
       axios
-        .put(`https://herokumovieapi.herokuapp.com/users/${Username}`,
+        .put(
+          `https://herokumovieapi.herokuapp.com/users/${Username}`,
           {
             Username: updatedUsername,
             Password: updatedPassword,
             Email: updatedEmail,
             Birthday: updatedBirthday,
-          }, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
+          },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        )
         .then((response) => {
           const data = response.data;
           console.log(data);
@@ -142,6 +173,17 @@ const Profile = ({ user }) => {
         {updatedBirthdayErr && (
           <Alert className="text-danger">{updatedBirthdayErr}</Alert>
         )}
+        <Alert>{Username}'s favorite movies:</Alert>
+        {favMovies.map((movieId) => (
+          <Row key={movieId}>
+            <Col>{getMovieTitle(movieId)}</Col>
+            <Col>
+              <Button onClick={() => deleteFavMovie(movieId)}>
+                <FontAwesomeIcon icon={solid("trash")} />
+              </Button>
+            </Col>
+          </Row>
+        ))}
       </Form.Group>
       {updateMode ? (
         <>

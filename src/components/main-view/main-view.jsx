@@ -31,6 +31,7 @@ const MainView = () => {
   const [movieId, setMovieId] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  //get all movies
   useEffect(() => {
     if (user) {
       axios
@@ -110,7 +111,10 @@ const MainView = () => {
         />
         <Route path="/directors/:name" element={<Director movies={movies} />} />
         <Route path="/genres/:name" element={<Genre movies={movies} />} />
-        <Route path="/profile-view" element={<Profile user={user} />} />
+        <Route
+          path="/profile-view"
+          element={<Profile user={user} movies={movies} />}
+        />
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>
