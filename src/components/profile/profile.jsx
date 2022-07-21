@@ -3,28 +3,16 @@ import { useNavigate, useRoutes } from "react-router-dom";
 import { Form, Button, Alert, Container, Row, Col } from "react-bootstrap";
 import axios, { AxiosError } from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  solid,
-  regular,
-  brands,
-} from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
-
-//Things to do
-//Retrieve user informaiton from local storage
-//Update local storage once user information is updated
+import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
+import PropTypes from "prop-types";
 
 const Profile = ({ user, movies }) => {
   const [favMovies, setFavMovies] = useState(
     user.user.FavoriteMovies.map((favMovie) => favMovie)
   );
-  // console.log(movies);
   const [updateMode, setUpdateMode] = useState(false);
   const navigate = useNavigate();
   let { Username, Birthday, Email } = user.user;
-  // let Username = "The User";
-  // let Birthday = "2003-02-02T00:00:00.000Z";
-  // let Email = "The Email";
-
   const [updatedUsername, setUpdatedUsername] = useState(Username);
   const [updatedPassword, setUpdatedPassword] = useState("");
   const [updatedEmail, setUpdatedEmail] = useState(Email);
@@ -205,6 +193,10 @@ const Profile = ({ user, movies }) => {
       )}
     </Form>
   );
+};
+
+Profile.propTypes = {
+  movies: PropTypes.array.isRequired,
 };
 
 export default Profile;

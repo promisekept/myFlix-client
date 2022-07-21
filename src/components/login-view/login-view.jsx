@@ -11,11 +11,8 @@ const LoginView = ({ onLoggedIn }) => {
   const [passwordErr, setPasswordErr] = useState("");
   const navigate = useNavigate();
 
-  // const [registered, setRegistered] = useState(true);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    // onLoggedIn(username);
     /* Send a request to the server for authentication */
     if (!username) {
       setUsernameErr("Username Required");
@@ -67,51 +64,8 @@ const LoginView = ({ onLoggedIn }) => {
           Submit
         </Button>
       </Form>
-      {/* <p className="text-danger" onClick={handleUnregistered}>
-        Not registered? Click here!
-      </p> */}
     </>
   );
-
-  // const handleUnregistered = () => {
-  //   setRegistered(!registered);
-  // };
-  // if (registered) {
-  //   return (
-  //     <>
-  //       <Form>
-  //         <Form.Group controlId="formUsername">
-  //           <Form.Label>Username:</Form.Label>
-  //           <Form.Control
-  //             type="text"
-  //             value={username}
-  //             onChange={(e) => {
-  //               setUsername(e.target.value);
-  //             }}
-  //           />
-  //           {usernameErr && <p className="text-danger">{usernameErr}</p>}
-  //         </Form.Group>
-  //         <Form.Group controlId="formPassword">
-  //           <Form.Label>Password:</Form.Label>
-  //           <Form.Control
-  //             type="password"
-  //             value={password}
-  //             onChange={(e) => setPassword(e.target.value)}
-  //           />
-  //           {passwordErr && <p className="text-danger">{passwordErr}</p>}
-  //         </Form.Group>
-  //         <Button variant="primary" type="submit" onClick={handleSubmit}>
-  //           Submit
-  //         </Button>
-  //       </Form>
-  //       <p className="text-danger" onClick={handleUnregistered}>
-  //         Not registered? Click here!
-  //       </p>
-  //     </>
-  //   );
-  // } else {
-  //   return <RegView handleUnregistered={handleUnregistered} />;
-  // }
 };
 
 LoginView.propTypes = {

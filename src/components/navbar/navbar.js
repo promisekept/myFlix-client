@@ -4,8 +4,6 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   return (
     <nav>
-      {/* {console.log(localStorage.getItem("user"))} */}
-      {/* {isLoggedIn ? ( */}
       {localStorage.getItem("user") ? (
         <>
           <NavLink to="/movies">Home</NavLink>

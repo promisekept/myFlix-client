@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Button, Alert } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import Director from "../director/director";
-
 import PropTypes from "prop-types";
 
 const MovieView = ({ movieId, movies }) => {
@@ -38,24 +36,9 @@ const MovieView = ({ movieId, movies }) => {
   );
 };
 
-// MovieView.propTypes = {
-//   movie: PropTypes.shape({
-//     Actors: PropTypes.array.isRequired,
-//     Description: PropTypes.string.isRequired,
-//     Director: PropTypes.shape({
-//       Bio: PropTypes.string.isRequired,
-//       Birth: PropTypes.string.isRequired,
-//       Name: PropTypes.string.isRequired,
-//     }),
-//     Featured: PropTypes.bool.isRequired,
-//     Genre: PropTypes.shape({
-//       Description: PropTypes.string.isRequired,
-//       Name: PropTypes.string.isRequired,
-//     }),
-//     ImagePath: PropTypes.string.isRequired,
-//     Title: PropTypes.string.isRequired,
-//   }).isRequired,
-//   returnToMain: PropTypes.func.isRequired,
-// };
+MovieView.propTypes = {
+  movies: PropTypes.array.isRequired,
+  movieId: PropTypes.string.isRequired,
+};
 
 export default MovieView;

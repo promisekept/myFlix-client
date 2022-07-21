@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import PropTypes from "prop-types";
 
 const Genre = ({ movies }) => {
   const params = useParams();
@@ -22,6 +23,10 @@ const Genre = ({ movies }) => {
       </Button>
     </>
   );
+};
+
+Genre.propTypes = {
+  movies: PropTypes.array.isRequired,
 };
 
 export default Genre;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import MovieCard from "../movie-card/movie-card";
+import PropTypes from "prop-types";
 
 const Director = ({ movies }) => {
   //make director name match the first movie he's in.  Then display his bio
@@ -24,6 +24,10 @@ const Director = ({ movies }) => {
       </Button>
     </>
   );
+};
+
+Director.propTypes = {
+  movies: PropTypes.array.isRequired,
 };
 
 export default Director;

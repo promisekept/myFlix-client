@@ -11,32 +11,38 @@ const MovieCard = ({ movie, selectMovie }) => {
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
         <Link to={`/movies/${movie._id}`}>
-          <Button variant="link" onClick={() => { selectMovie(movie._id)  }}>Open</Button>
-          {/* <Button variant="link" onClick={() => { selectMovie(movie) }}>Open</Button> */}
+          <Button
+            variant="link"
+            onClick={() => {
+              selectMovie(movie._id);
+            }}
+          >
+            Open
+          </Button>
         </Link>
       </Card.Body>
-    </Card >
+    </Card>
   );
 };
 
-// MovieCard.propTypes = {
-//   movie: PropTypes.shape({
-//     Actors: PropTypes.array.isRequired,
-//     Description: PropTypes.string.isRequired,
-//     Director: PropTypes.shape({
-//       Bio: PropTypes.string.isRequired,
-//       Birth: PropTypes.string.isRequired,
-//       Name: PropTypes.string.isRequired,
-//     }),
-//     Featured: PropTypes.bool.isRequired,
-//     Genre: PropTypes.shape({
-//       Description: PropTypes.string.isRequired,
-//       Name: PropTypes.string.isRequired,
-//     }),
-//     ImagePath: PropTypes.string.isRequired,
-//     Title: PropTypes.string.isRequired,
-//   }).isRequired,
-//   displayMovie: PropTypes.func.isRequired,
-// };
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    Actors: PropTypes.array.isRequired,
+    Description: PropTypes.string.isRequired,
+    Director: PropTypes.shape({
+      Bio: PropTypes.string.isRequired,
+      Birth: PropTypes.string.isRequired,
+      Name: PropTypes.string.isRequired,
+    }),
+    Featured: PropTypes.bool.isRequired,
+    Genre: PropTypes.shape({
+      Description: PropTypes.string.isRequired,
+      Name: PropTypes.string.isRequired,
+    }),
+    ImagePath: PropTypes.string.isRequired,
+    Title: PropTypes.string.isRequired,
+  }).isRequired,
+  selectMovie: PropTypes.func.isRequired,
+};
 
 export default MovieCard;
