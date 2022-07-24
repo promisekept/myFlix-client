@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Container, Row, Col } from "react-bootstrap";
 
 import MovieCard from "../movie-card/movie-card";
 import MovieView from "../movie-view/movie-view";
@@ -15,13 +16,13 @@ import Profile from "../profile/profile";
 
 const MainView = () => {
   const [movies, setMovies] = useState([]);
-  const [user, setUser] = useState(null);
-  const [movieId, setMovieId] = useState([]);
+  const [user, setUser] = useState([]);
+  const [movieId, setMovieId] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   //get all movies
   useEffect(() => {
-    if (user) {
+    if (localStorage.getItem("user")) {
       axios
         .get("https://herokumovieapi.herokuapp.com/movies", {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -81,13 +82,19 @@ const MainView = () => {
         />
         <Route
           path="/movies"
-          element={movies.map((movie) => (
-            <MovieCard
-              key={movie._id}
-              movie={movie}
-              selectMovie={selectMovie}
-            />
-          ))}
+          element={
+            <Container>
+              {movies.map((movie) => (
+                <Row key={movie._id}>
+                  <MovieCard
+                    key={movie._id}
+                    movie={movie}
+                    selectMovie={selectMovie}
+                  />
+                </Row>
+              ))}
+            </Container>
+          }
         />
         <Route
           path="/movies/:movieId"
@@ -99,10 +106,7 @@ const MainView = () => {
         />
         <Route path="/directors/:name" element={<Director movies={movies} />} />
         <Route path="/genres/:name" element={<Genre movies={movies} />} />
-        <Route
-          path="/profile-view"
-          element={<Profile user={user} movies={movies} />}
-        />
+        <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>

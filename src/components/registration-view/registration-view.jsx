@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
 import { Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
 
@@ -43,7 +42,6 @@ const RegistrationView = () => {
         })
         .then((response) => {
           const data = response.data;
-          console.log(data);
           setRegistratonSuccessful(true);
         })
         .catch((e) => {

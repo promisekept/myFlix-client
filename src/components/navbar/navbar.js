@@ -1,19 +1,30 @@
 import React from "react";
+import { Container, Navbar as NavbarTag, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <nav>
-      {localStorage.getItem("user") ? (
-        <>
-          <NavLink to="/movies">Home</NavLink>
-          <NavLink to="/profile-view">Profile</NavLink>
-          <NavLink to="/signout">Sign out</NavLink>
-        </>
-      ) : (
-        <NavLink to="/registration">Sign up</NavLink>
-      )}
-    </nav>
+    <NavbarTag bg="light" variant="light">
+      <Container>
+        <Nav className="me-auto">
+          {localStorage.getItem("user") ? (
+            <>
+              {/* <Nav.Link> */}
+              <NavLink to="/movies">Home</NavLink>
+              {/* </Nav.Link> */}
+              {/* <Nav.Link> */}
+              <NavLink to="/profile">Profile</NavLink>
+              {/* </Nav.Link> */}
+              {/* <Nav.Link> */}
+              <NavLink to="/signout">Sign out</NavLink>
+              {/* </Nav.Link> */}
+            </>
+          ) : (
+            <NavLink to="/registration">Sign up</NavLink>
+          )}
+        </Nav>
+      </Container>
+    </NavbarTag>
   );
 };
 

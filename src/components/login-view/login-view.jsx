@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Form, Button, Alert } from "react-bootstrap";
 import axios from "axios";
@@ -10,6 +10,12 @@ const LoginView = ({ onLoggedIn }) => {
   const [usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!!localStorage.getItem("user")) {
+      navigate("/movies");
+    }
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -1,33 +1,75 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useRoutes } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Form, Button, Alert, Container, Row, Col } from "react-bootstrap";
-import axios, { AxiosError } from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
-import PropTypes from "prop-types";
+import axios from "axios";
 
-const Profile = ({ user, movies }) => {
-  const [favMovies, setFavMovies] = useState(
-    user.user.FavoriteMovies.map((favMovie) => favMovie)
-  );
-  const [updateMode, setUpdateMode] = useState(false);
+const Profile = () => {
+  const [user, setUser] = useState([]);
+  const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
-  let { Username, Birthday, Email } = user.user;
-  const [updatedUsername, setUpdatedUsername] = useState(Username);
+  const [favMovies, setFavMovies] = useState([]);
+  const [updateMode, setUpdateMode] = useState(false);
+  const [updatedUsername, setUpdatedUsername] = useState("");
   const [updatedPassword, setUpdatedPassword] = useState("");
-  const [updatedEmail, setUpdatedEmail] = useState(Email);
-  const [updatedBirthday, setUpdatedBirthday] = useState(
-    Birthday.substring(0, 10)
-  );
+  const [updatedEmail, setUpdatedEmail] = useState("");
+  const [updatedBirthday, setUpdatedBirthday] = useState("");
   const [updatedUsernameErr, setUpdatedUsernameErr] = useState("");
   const [updatedPasswordErr, setUpdatedPasswordErr] = useState("");
   const [updatedEmailErr, setUpdatedEmailErr] = useState("");
   const [updatedBirthdayErr, setUpdatedBirthdayErr] = useState("");
-  const token = localStorage.getItem("token");
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      axios
+        .get("https://herokumovieapi.herokuapp.com/movies", {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        })
+        .then((response) => {
+          setMovies(response.data);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      const Username = localStorage.getItem("user");
+      axios
+        .get("https://herokumovieapi.herokuapp.com/users", {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        })
+        .then((response) => {
+          const allUsersAr = response.data;
+          setUser(
+            allUsersAr.filter((account) => account.Username === Username)[0]
+          );
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    } else {
+      navigate("/");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user.Username) {
+      const { Username, Birthday, Email } = user;
+      setFavMovies(user.FavoriteMovies.map((favMovie) => favMovie));
+      setUpdatedUsername(Username);
+      setUpdatedEmail(Email);
+      setUpdatedBirthday(Birthday.substring(0, 10));
+    }
+  }, [user]);
 
   const getMovieTitle = (movieId) => {
-    return movies.filter((movie) => movie._id === movieId && movie.Title)[0]
-      .Title;
+    if (favMovies.length > 0) {
+      return movies.filter((movie) => movie._id === movieId && movie.Title)[0]
+        .Title;
+    }
   };
   const deleteFavMovie = (movieId) => {
     setFavMovies(favMovies.filter((favMovieId) => favMovieId !== movieId));
@@ -35,7 +77,7 @@ const Profile = ({ user, movies }) => {
       .delete(
         `https://herokumovieapi.herokuapp.com/users/${updatedUsername}/movies/${movieId}`,
         {
-          headers: { Authorization: `Bearer ${token}` },
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       )
       .then((response) => {
@@ -48,9 +90,15 @@ const Profile = ({ user, movies }) => {
   const deleteAccount = (e) => {
     e.preventDefault();
     axios
-      .delete(`https://herokumovieapi.herokuapp.com/users/${updatedUsername}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      })
+      .delete(
+        `https://herokumovieapi.herokuapp.com/users/${localStorage.getItem(
+          "user"
+        )},
+      `,
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      )
       .then((response) => {
         localStorage.removeItem("user");
         localStorage.removeItem("token");
@@ -84,15 +132,17 @@ const Profile = ({ user, movies }) => {
     } else if (!updatedBirthday) {
       setUpdatedBirthdayErr("Birtdhay is requied");
     } else {
-      console.log("info updated");
       setUpdateMode(false);
       setUpdatedUsernameErr("");
       setUpdatedPasswordErr("");
       setUpdatedEmailErr("");
       setUpdatedBirthdayErr("");
+      console.log();
       axios
         .put(
-          `https://herokumovieapi.herokuapp.com/users/${Username}`,
+          `https://herokumovieapi.herokuapp.com/users/${localStorage.getItem(
+            "user"
+          )}`,
           {
             Username: updatedUsername,
             Password: updatedPassword,
@@ -100,7 +150,9 @@ const Profile = ({ user, movies }) => {
             Birthday: updatedBirthday,
           },
           {
-            headers: { Authorization: `Bearer ${token}` },
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
           }
         )
         .then((response) => {
@@ -161,7 +213,9 @@ const Profile = ({ user, movies }) => {
         {updatedBirthdayErr && (
           <Alert className="text-danger">{updatedBirthdayErr}</Alert>
         )}
-        <Alert>{Username}'s favorite movies:</Alert>
+        {favMovies.length > 0 && (
+          <Alert>{updatedUsername}'s favorite movies:</Alert>
+        )}
         {favMovies.map((movieId) => (
           <Row key={movieId}>
             <Col>{getMovieTitle(movieId)}</Col>
@@ -193,10 +247,6 @@ const Profile = ({ user, movies }) => {
       )}
     </Form>
   );
-};
-
-Profile.propTypes = {
-  movies: PropTypes.array.isRequired,
 };
 
 export default Profile;
