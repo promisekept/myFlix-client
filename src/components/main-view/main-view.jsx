@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 
 import MovieCard from "../movie-card/movie-card";
 import MovieView from "../movie-view/movie-view";
@@ -84,15 +84,15 @@ const MainView = () => {
           path="/movies"
           element={
             <Container>
-              {movies.map((movie) => (
-                <Row key={movie._id}>
+              <Row xs={1} md={2} lg={4} className="g-4">
+                {movies.map((movie) => (
                   <MovieCard
                     key={movie._id}
                     movie={movie}
                     selectMovie={selectMovie}
                   />
-                </Row>
-              ))}
+                ))}
+              </Row>
             </Container>
           }
         />

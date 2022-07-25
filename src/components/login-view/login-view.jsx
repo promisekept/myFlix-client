@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, Stack } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -44,8 +44,8 @@ const LoginView = ({ onLoggedIn }) => {
     }
   };
   return (
-    <>
-      <Form>
+    <Form>
+      <Stack gap={1}>
         <Form.Group controlId="formUsername">
           <Form.Label>Username:</Form.Label>
           <Form.Control
@@ -66,11 +66,16 @@ const LoginView = ({ onLoggedIn }) => {
           />
           {passwordErr && <Alert className="text-danger">{passwordErr}</Alert>}
         </Form.Group>
-        <Button variant="primary" type="submit" onClick={handleSubmit}>
-          Submit
-        </Button>
-      </Form>
-    </>
+      </Stack>
+      <Button
+        className="mt-3"
+        variant="primary"
+        type="submit"
+        onClick={handleSubmit}
+      >
+        Submit
+      </Button>
+    </Form>
   );
 };
 

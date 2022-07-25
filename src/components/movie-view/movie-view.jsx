@@ -1,44 +1,65 @@
 import React, { useEffect, useState } from "react";
-import { Button, Alert } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
+import { Button, Alert, Figure, Stack } from "react-bootstrap";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
-const MovieView = ({ movieId, movies }) => {
-  const [movie, setMovie] = useState(movies.find((m) => m._id === movieId));
+const MovieView = () => {
+  const params = useParams();
+  const movieId = params.movieId;
+  const [movie, setMovie] = useState();
+  // const { ImagePath, Title, Description, Director } = movie;
   const navigate = useNavigate();
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      axios
+        .get("https://herokumovieapi.herokuapp.com/movies", {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        })
+        .then((response) => {
+          setMovie(response.data.find((m) => m._id === movieId));
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }, []);
   return movie ? (
     <>
-      <div className="movie-view">
-        <div className="movie-poster">
-          <img src={movie.ImagePath} />
+      <Figure>
+        <div className="movie-view">
+          <div className="movie-poster">
+            <Figure.Image
+              className="w-50 mw-75"
+              src={movie.ImagePath}
+              alt={movie.Title}
+            />
+          </div>
         </div>
-      </div>
-      <div className="movie-title">
-        <span className="label">Title: </span>
-        <span className="value">{movie.Title}</span>
-      </div>
-      <div className="movie-description">
-        <span className="label">Description: </span>
-        <span className="value">{movie.Description}</span>
-      </div>
-      <Button variant="link" onClick={() => navigate("/movies")}>
-        Return
-      </Button>
-      <Link to={`/directors/${movie.Director.Name}`}>
-        <Button variant="link">Director</Button>
-      </Link>
-      <Link to={`/genres/${movie.Genre.Name}`}>
-        <Button variant="link">Genre</Button>
-      </Link>
+        <div className="movie-title">
+          <span className="label">Title: </span>
+          <Figure.Caption className="value">{movie.Title}</Figure.Caption>
+        </div>
+        <br />
+        <div className="movie-description">
+          <span className="label">Description: </span>
+          <span className="value">{movie.Description}</span>
+        </div>
+      </Figure>
+      <Stack direction="horizontal" gap={3}>
+        <Button variant="link" onClick={() => navigate("/movies")}>
+          Return
+        </Button>
+        <Link to={`/directors/${movie.Director.Name}`}>
+          <Button variant="link">Director</Button>
+        </Link>
+        <Link to={`/genres/${movie.Genre.Name}`}>
+          <Button variant="link">Genre</Button>
+        </Link>
+      </Stack>
     </>
   ) : (
     <Alert>Movie not found</Alert>
   );
-};
-
-MovieView.propTypes = {
-  movies: PropTypes.array.isRequired,
-  movieId: PropTypes.string.isRequired,
 };
 
 export default MovieView;

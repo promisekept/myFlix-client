@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, Stack } from "react-bootstrap";
 import axios from "axios";
 
 const RegistrationView = () => {
@@ -101,10 +101,12 @@ const RegistrationView = () => {
           <Alert className="text-danger">{newBirthdayErr}</Alert>
         )}
       </Form.Group>
-      <Button type="submit" onClick={handleRegister}>
-        Submit
-      </Button>
-      <Button onClick={() => navigate("/")}>Go back</Button>
+      <Stack className="mt-5" direction="horizontal" gap={3}>
+        <Button type="submit" onClick={handleRegister}>
+          Submit
+        </Button>
+        <Button onClick={() => navigate("/")}>Go back</Button>
+      </Stack>
     </Form>
   );
 };

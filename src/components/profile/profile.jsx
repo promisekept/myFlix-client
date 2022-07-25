@@ -1,6 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Form, Button, Alert, Container, Row, Col } from "react-bootstrap";
+import {
+  Form,
+  Button,
+  Alert,
+  Container,
+  Row,
+  Col,
+  Stack,
+} from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
 import axios from "axios";
@@ -66,9 +74,11 @@ const Profile = () => {
   }, [user]);
 
   const getMovieTitle = (movieId) => {
-    if (favMovies.length > 0) {
-      return movies.filter((movie) => movie._id === movieId && movie.Title)[0]
-        .Title;
+    if (movies.length) {
+      if (favMovies.length > 0) {
+        return movies.filter((movie) => movie._id === movieId && movie.Title)[0]
+          .Title;
+      }
     }
   };
   const deleteFavMovie = (movieId) => {
@@ -165,7 +175,7 @@ const Profile = () => {
 
   return (
     <Form>
-      <Alert>Your account information</Alert>
+      <Alert>Your account information:</Alert>
       <Form.Group controlId="formUpdatedUser">
         <Form.Label>Username:</Form.Label>
         <Form.Control
@@ -214,37 +224,41 @@ const Profile = () => {
           <Alert className="text-danger">{updatedBirthdayErr}</Alert>
         )}
         {favMovies.length > 0 && (
-          <Alert>{updatedUsername}'s favorite movies:</Alert>
+          <Alert className="mt-4">{updatedUsername}'s favorite movies:</Alert>
         )}
-        {favMovies.map((movieId) => (
-          <Row key={movieId}>
-            <Col>{getMovieTitle(movieId)}</Col>
-            <Col>
-              <Button onClick={() => deleteFavMovie(movieId)}>
-                <FontAwesomeIcon icon={solid("trash")} />
-              </Button>
-            </Col>
-          </Row>
-        ))}
+        <Stack gap={2}>
+          {favMovies.map((movieId) => (
+            <Row key={movieId}>
+              <Col>{getMovieTitle(movieId)}</Col>
+              <Col>
+                <Button onClick={() => deleteFavMovie(movieId)}>
+                  <FontAwesomeIcon icon={solid("trash")} />
+                </Button>
+              </Col>
+            </Row>
+          ))}
+        </Stack>
       </Form.Group>
-      {updateMode ? (
-        <>
-          <Button onClick={updateInfo}>Update</Button>
-          <Button onClick={() => setUpdateMode(false)}>Cancel</Button>
-        </>
-      ) : (
-        <>
-          <Button onClick={() => setUpdateMode(true)}>
-            Update user information
-          </Button>
-          <Button type="submit" onClick={deleteAccount}>
-            Delete account
-          </Button>
-          <Button variant="link" onClick={() => navigate(-1)}>
-            Go back
-          </Button>
-        </>
-      )}
+      <Stack direction="horizontal" gap={3} className="mt-2">
+        {updateMode ? (
+          <>
+            <Button onClick={updateInfo}>Update</Button>
+            <Button onClick={() => setUpdateMode(false)}>Cancel</Button>
+          </>
+        ) : (
+          <>
+            <Button onClick={() => setUpdateMode(true)}>
+              Update user information
+            </Button>
+            <Button variant="danger" type="submit" onClick={deleteAccount}>
+              Delete account
+            </Button>
+            <Button variant="link" onClick={() => navigate(-1)}>
+              Go back
+            </Button>
+          </>
+        )}
+      </Stack>
     </Form>
   );
 };

@@ -3,25 +3,28 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { Col } from "react-bootstrap";
 
 const MovieCard = ({ movie, selectMovie }) => {
   return (
-    <Card>
-      <Card.Img variant="top" src={movie.ImagePath} />
-      <Card.Body>
-        <Card.Title>{movie.Title}</Card.Title>
-        <Link to={`/movies/${movie._id}`}>
-          <Button
-            variant="link"
-            onClick={() => {
-              selectMovie(movie._id);
-            }}
-          >
-            Open
-          </Button>
-        </Link>
-      </Card.Body>
-    </Card>
+    <Col>
+      <Card>
+        <Card.Img variant="top" src={movie.ImagePath} />
+        <Card.Body>
+          <Card.Title>{movie.Title}</Card.Title>
+          <Link to={`/movies/${movie._id}`}>
+            <Button
+              variant="link"
+              onClick={() => {
+                selectMovie(movie._id);
+              }}
+            >
+              Open
+            </Button>
+          </Link>
+        </Card.Body>
+      </Card>
+    </Col>
   );
 };
 
