@@ -2,12 +2,13 @@ import React from "react";
 import { Container, Navbar as NavbarTag, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ user }) => {
+  console.log(`Navbar user: ${user}`)
   return (
     <NavbarTag bg="primary" variant="dark" sticky="top" className="mb-2">
       <Container>
         <Nav className="me-auto">
-          {localStorage.getItem("user") ? (
+          {user !== undefined ? (
             <>
               <NavLink className="nav-link" to="/movies">
                 Home

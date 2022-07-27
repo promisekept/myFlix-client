@@ -1,11 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import { Col } from "react-bootstrap";
+import { Col, Card, Button } from "react-bootstrap";
 
-const MovieCard = ({ movie, selectMovie }) => {
+const MovieCard = ({ movie }) => {
   return (
     <Col>
       <Card>
@@ -13,14 +11,7 @@ const MovieCard = ({ movie, selectMovie }) => {
         <Card.Body>
           <Card.Title>{movie.Title}</Card.Title>
           <Link to={`/movies/${movie._id}`}>
-            <Button
-              variant="link"
-              onClick={() => {
-                selectMovie(movie._id);
-              }}
-            >
-              Open
-            </Button>
+            <Button variant="link">Open</Button>
           </Link>
         </Card.Body>
       </Card>
@@ -45,7 +36,6 @@ MovieCard.propTypes = {
     ImagePath: PropTypes.string.isRequired,
     Title: PropTypes.string.isRequired,
   }).isRequired,
-  selectMovie: PropTypes.func.isRequired,
 };
 
 export default MovieCard;

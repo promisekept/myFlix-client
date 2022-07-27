@@ -16,9 +16,7 @@ import Profile from "../profile/profile";
 
 const MainView = () => {
   const [movies, setMovies] = useState([]);
-  const [user, setUser] = useState([]);
-  const [movieId, setMovieId] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState();
 
   //get all movies
   useEffect(() => {
@@ -56,60 +54,48 @@ const MainView = () => {
     }
   }, []);
 
-  const onLoggedIn = (authData) => {
-    setUser(authData);
-    localStorage.setItem("token", authData.token);
-    localStorage.setItem("user", authData.user.Username);
-    setIsLoggedIn(true);
-  };
 
-  const onLoggedOut = () => {
-    setIsLoggedIn(false);
-  };
-  const selectMovie = (id) => {
-    setMovieId(id);
-  };
-
+  console.log(`Main View user: ${user}`);
   return (
     <Router>
-      <Navbar />
+      <Navbar user={user} />
       <Routes>
-        <Route path="/" element={<LoginView onLoggedIn={onLoggedIn} />} />
+        <Route path="/" element={<LoginView />} />
         <Route
           path="/registration"
           element={<RegView />}
-          // element={user ? <Navigate to="/movies" /> : <RegView />}
+        // element={user ? <Navigate to="/movies" /> : <RegView />}
         />
         <Route
           path="/movies"
           element={
-            <Container>
-              <Row xs={1} md={2} lg={4} className="g-4">
-                {movies.map((movie) => (
-                  <MovieCard
-                    key={movie._id}
-                    movie={movie}
-                    selectMovie={selectMovie}
-                  />
-                ))}
-              </Row>
-            </Container>
+            <Error />
+            // <Container>
+            //   <Row xs={1} md={2} lg={4} className="g-4">
+            //     {movies.map((movie) => (
+            //       <MovieCard
+            //         key={movie._id}
+            //         movie={movie}
+            //       />
+            //     ))}
+            //   </Row>
+            // </Container>
           }
         />
         <Route
           path="/movies/:movieId"
-          element={<MovieView movieId={movieId} movies={movies} />}
+          element={<MovieView />}
         />
         <Route
           path="/signout"
-          element={<Signout onLoggedOut={onLoggedOut} />}
+          element={<Signout />}
         />
-        <Route path="/directors/:name" element={<Director movies={movies} />} />
-        <Route path="/genres/:name" element={<Genre movies={movies} />} />
+        <Route path="/directors/:name" element={<Director />} />
+        <Route path="/genres/:name" element={<Genre />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<Error />} />
       </Routes>
-    </Router>
+    </Router >
   );
 };
 export default MainView;

@@ -1,22 +1,14 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react";
 import { Form, Button, Alert, Stack } from "react-bootstrap";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const LoginView = ({ onLoggedIn }) => {
+const LoginView = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!!localStorage.getItem("user")) {
-      navigate("/movies");
-    }
-  }, []);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     /* Send a request to the server for authentication */
@@ -35,8 +27,9 @@ const LoginView = ({ onLoggedIn }) => {
           Password: password,
         })
         .then((response) => {
-          onLoggedIn(response.data);
-          navigate("/movies");
+          localStorage.setItem("token", response.data.token)
+          localStorage.setItem("user", response.data.user.Username)
+          navigate("/movies")
         })
         .catch((e) => {
           console.log("no such user");
@@ -79,7 +72,4 @@ const LoginView = ({ onLoggedIn }) => {
   );
 };
 
-LoginView.propTypes = {
-  onLoggedIn: PropTypes.func.isRequired,
-};
 export default LoginView;
