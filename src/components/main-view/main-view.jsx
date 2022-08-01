@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Container, Row } from "react-bootstrap";
 
 import MovieCard from "../movie-card/movie-card";
 import MovieView from "../movie-view/movie-view";
@@ -15,24 +14,7 @@ import Director from "../director/director";
 import Profile from "../profile/profile";
 
 const MainView = () => {
-  const [movies, setMovies] = useState([]);
   const [user, setUser] = useState();
-
-  //get all movies
-  useEffect(() => {
-    if (localStorage.getItem("user")) {
-      axios
-        .get("https://herokumovieapi.herokuapp.com/movies", {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        })
-        .then((response) => {
-          setMovies(response.data);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
-  }, [user]);
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
@@ -55,7 +37,6 @@ const MainView = () => {
   }, []);
 
 
-  console.log(`Main View user: ${user}`);
   return (
     <Router>
       <Navbar user={user} />
@@ -69,17 +50,7 @@ const MainView = () => {
         <Route
           path="/movies"
           element={
-            <Error />
-            // <Container>
-            //   <Row xs={1} md={2} lg={4} className="g-4">
-            //     {movies.map((movie) => (
-            //       <MovieCard
-            //         key={movie._id}
-            //         movie={movie}
-            //       />
-            //     ))}
-            //   </Row>
-            // </Container>
+            <MovieCard />
           }
         />
         <Route

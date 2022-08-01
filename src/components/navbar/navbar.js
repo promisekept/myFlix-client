@@ -3,7 +3,6 @@ import { Container, Navbar as NavbarTag, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
 const Navbar = ({ user }) => {
-  console.log(`Navbar user: ${user}`)
   return (
     <NavbarTag bg="primary" variant="dark" sticky="top" className="mb-2">
       <Container>
@@ -31,16 +30,5 @@ const Navbar = ({ user }) => {
     </NavbarTag>
   );
 };
-//   <NavbarTag bg="primary" variant="dark">
-//     <Container>
-//       <NavbarTag.Brand href="#home">Navbar</NavbarTag.Brand>
-//       <Nav className="me-auto">
-//         <Nav.Link href="#home">Home</Nav.Link>
-//         <Nav.Link href="#features">Features</Nav.Link>
-//         <Nav.Link href="#pricing">Pricing</Nav.Link>
-//       </Nav>
-//     </Container>
-//   </NavbarTag>
-// );
-// };
+
 export default Navbar;
