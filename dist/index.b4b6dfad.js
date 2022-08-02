@@ -22717,7 +22717,7 @@ const MainView = ()=>{
             }).then((response)=>{
                 const allUsersAr = response.data;
                 setUser(allUsersAr.filter((account)=>account.Username === Username
-                )[0]); // console.log(allUsersAr.filter(account => account.Username === Username))
+                )[0]);
             }).catch(function(error) {
                 console.log(error);
             });
@@ -28047,21 +28047,17 @@ const MovieCard = ()=>{
             });
         }
     }, []);
-    const isFavorite = (favMovies, id)=>{
-        // console.log(favMovies.includes(id));
-        if (favMovies && id) return favMovies.includes(id);
+    const isFavorite = (id)=>{
+        if (user.FavoriteMovies && id) return user.FavoriteMovies.includes(id);
     };
     const addToFavorite = (id)=>{
-        // console.log(id)
-        // console.log(user.Username);
-        // console.log(`https://herokumovieapi.herokuapp.com/users/${user.Username}/movies/${id}`)
-        _axiosDefault.default.post(`https://herokumovieapi.herokuapp.com/users/${user.Username}/movies/${id}`, {
+        _axiosDefault.default.post(`https://herokumovieapi.herokuapp.com/users/${user.Username}/movies/${id}`, {}, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
             }
         }).then((response)=>{
             console.log(response.data);
-            console.log(`Added to favorites movie #: ${id}`);
+            setUser(response.data);
         }).catch((e)=>{
             console.log(e);
             console.log("error adding a movie");
@@ -28073,78 +28069,84 @@ const MovieCard = ()=>{
             md: 2,
             lg: 4,
             className: "g-4",
-            children: movies.map((movie)=>/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
-                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Card, {
-                        children: [
-                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Card.Img, {
-                                variant: "top",
-                                src: movie.ImagePath
-                            }, void 0, false, {
-                                fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 63,
-                                columnNumber: 15
-                            }, undefined),
-                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Card.Body, {
-                                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Stack, {
-                                    direction: "horizontal",
-                                    children: [
-                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Link, {
-                                            to: `/movies/${movie._id}`,
-                                            children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
-                                                variant: "success",
-                                                children: "Open"
+            children: movies.map((movie)=>/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_react.Fragment, {
+                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
+                        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Card, {
+                            children: [
+                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Card.Img, {
+                                    variant: "top",
+                                    src: movie.ImagePath
+                                }, void 0, false, {
+                                    fileName: "src/components/movie-card/movie-card.jsx",
+                                    lineNumber: 62,
+                                    columnNumber: 17
+                                }, undefined),
+                                /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Card.Body, {
+                                    children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Stack, {
+                                        direction: "horizontal",
+                                        children: [
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Link, {
+                                                to: `/movies/${movie._id}`,
+                                                children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                                                    variant: "success",
+                                                    children: "Open"
+                                                }, void 0, false, {
+                                                    fileName: "src/components/movie-card/movie-card.jsx",
+                                                    lineNumber: 66,
+                                                    columnNumber: 23
+                                                }, undefined)
                                             }, void 0, false, {
                                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                                lineNumber: 67,
+                                                lineNumber: 65,
+                                                columnNumber: 21
+                                            }, undefined),
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
+                                                onClick: ()=>addToFavorite(movie._id)
+                                                ,
+                                                disabled: isFavorite(movie._id),
+                                                className: "ms-auto",
+                                                children: "Add to Favorites"
+                                            }, void 0, false, {
+                                                fileName: "src/components/movie-card/movie-card.jsx",
+                                                lineNumber: 68,
                                                 columnNumber: 21
                                             }, undefined)
-                                        }, void 0, false, {
-                                            fileName: "src/components/movie-card/movie-card.jsx",
-                                            lineNumber: 66,
-                                            columnNumber: 19
-                                        }, undefined),
-                                        /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Button, {
-                                            onClick: ()=>addToFavorite(movie._id)
-                                            ,
-                                            disabled: isFavorite(user.FavoriteMovies, movie._id),
-                                            className: "ms-auto",
-                                            children: "Add to Favorites"
-                                        }, void 0, false, {
-                                            fileName: "src/components/movie-card/movie-card.jsx",
-                                            lineNumber: 69,
-                                            columnNumber: 19
-                                        }, undefined)
-                                    ]
-                                }, void 0, true, {
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "src/components/movie-card/movie-card.jsx",
+                                        lineNumber: 64,
+                                        columnNumber: 19
+                                    }, undefined)
+                                }, void 0, false, {
                                     fileName: "src/components/movie-card/movie-card.jsx",
-                                    lineNumber: 65,
+                                    lineNumber: 63,
                                     columnNumber: 17
                                 }, undefined)
-                            }, void 0, false, {
-                                fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 64,
-                                columnNumber: 15
-                            }, undefined)
-                        ]
-                    }, void 0, true, {
+                            ]
+                        }, void 0, true, {
+                            fileName: "src/components/movie-card/movie-card.jsx",
+                            lineNumber: 61,
+                            columnNumber: 15
+                        }, undefined)
+                    }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 62,
+                        lineNumber: 60,
                         columnNumber: 13
                     }, undefined)
                 }, movie._id, false, {
                     fileName: "src/components/movie-card/movie-card.jsx",
-                    lineNumber: 61,
+                    lineNumber: 59,
                     columnNumber: 72
                 }, undefined)
             )
         }, void 0, false, {
             fileName: "src/components/movie-card/movie-card.jsx",
-            lineNumber: 61,
+            lineNumber: 59,
             columnNumber: 9
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/movie-card/movie-card.jsx",
-        lineNumber: 60,
+        lineNumber: 58,
         columnNumber: 27
     }, undefined) : /*#__PURE__*/ _jsxDevRuntime.jsxDEV(Alert, {
         children: "Movies or User not loaded"
@@ -42417,7 +42419,7 @@ const Navbar = ({ user  })=>{
             children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Nav, {
                 className: "me-auto",
                 children: [
-                    user !== undefined ? /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
+                    user ? /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
                         children: [
                             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.NavLink, {
                                 className: "nav-link",

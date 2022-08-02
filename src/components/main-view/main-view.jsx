@@ -28,7 +28,6 @@ const MainView = () => {
           setUser(
             allUsersAr.filter((account) => account.Username === Username)[0]
           );
-          // console.log(allUsersAr.filter(account => account.Username === Username))
         })
         .catch(function (error) {
           console.log(error);

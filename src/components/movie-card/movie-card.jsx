@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Card, Button, Stack } from "react-bootstrap";
 import axios from "axios";
@@ -40,22 +40,19 @@ const MovieCard = () => {
     }
   }, []);
 
-  const isFavorite = (favMovies, id) => {
-    // console.log(favMovies.includes(id));
-    if (favMovies && id)
-      return favMovies.includes(id);
+
+  const isFavorite = (id) => {
+    if (user.FavoriteMovies && id) {
+      return user.FavoriteMovies.includes(id);
+    }
   }
   const addToFavorite = (id) => {
-    // console.log(id)
-    // console.log(user.Username);
-    // console.log(`https://herokumovieapi.herokuapp.com/users/${user.Username}/movies/${id}`)
-    axios.post(`https://herokumovieapi.herokuapp.com/users/${user.Username}/movies/${id}`
-      , {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      })
+    axios.post(`https://herokumovieapi.herokuapp.com/users/${user.Username}/movies/${id}`, {}, {
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+    })
       .then((response) => {
         console.log(response.data)
-        console.log(`Added to favorites movie #: ${id}`);
+        setUser(response.data)
       })
       .catch((e) => {
         console.log(e)
@@ -67,21 +64,22 @@ const MovieCard = () => {
     (
       <Container>
         <Row xs={1} md={2} lg={4} className="g-4">{movies.map(movie =>
-          <Col key={movie._id}>
-            <Card>
-              <Card.Img variant="top" src={movie.ImagePath} />
-              <Card.Body>
-                <Stack direction="horizontal">
-                  <Link to={`/movies/${movie._id}`} >
-                    <Button variant="success">Open</Button>
-                  </Link>
-                  <Button onClick={() => addToFavorite(movie._id)} disabled={isFavorite(user.FavoriteMovies, movie._id)} className="ms-auto">Add to Favorites</Button>
-                </Stack>
-              </Card.Body>
-            </Card>
-          </Col>
-        )}</Row>
-      </Container>
+          <Fragment key={movie._id}>
+            <Col >
+              <Card>
+                <Card.Img variant="top" src={movie.ImagePath} />
+                <Card.Body>
+                  <Stack direction="horizontal">
+                    <Link to={`/movies/${movie._id}`} >
+                      <Button variant="success">Open</Button>
+                    </Link>
+                    <Button onClick={() => addToFavorite(movie._id)} disabled={isFavorite(movie._id)} className="ms-auto">Add to Favorites</Button>
+                  </Stack>
+                </Card.Body>
+              </Card>
+            </Col>
+          </Fragment>)}</Row>
+      </Container >
     ) :
     <Alert>Movies or User not loaded</Alert>
 };

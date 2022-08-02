@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Container, Navbar as NavbarTag, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
@@ -7,7 +8,7 @@ const Navbar = ({ user }) => {
     <NavbarTag bg="primary" variant="dark" sticky="top" className="mb-2">
       <Container>
         <Nav className="me-auto">
-          {user !== undefined ? (
+          {user ? (
             <>
               <NavLink className="nav-link" to="/movies">
                 Home
