@@ -3,9 +3,14 @@ import React from "react";
 import { Container, Navbar as NavbarTag, Nav } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-const Navbar = ({ user }) => {
+const Navbar = ({ user, inRegScreen, isInRegScreen }) => {
   return (
-    <NavbarTag bg="primary" variant="dark" sticky="top" className="mb-2">
+    <NavbarTag
+      bg="primary"
+      variant="dark"
+      sticky="top"
+      className={`mb-2 ${inRegScreen ? "d-none" : ""}`}
+    >
       <Container>
         <Nav className="me-auto">
           {user ? (
@@ -21,7 +26,11 @@ const Navbar = ({ user }) => {
               </NavLink>
             </>
           ) : (
-            <NavLink className="nav-link" to="/registration">
+            <NavLink
+              className="nav-link"
+              to="/registration"
+              onClick={isInRegScreen}
+            >
               Sign up
             </NavLink>
           )}

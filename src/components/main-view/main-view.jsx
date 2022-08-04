@@ -15,6 +15,7 @@ import Profile from "../profile/profile";
 
 const MainView = () => {
   const [user, setUser] = useState();
+  const [inRegScreen, setInRegScreen] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
@@ -35,37 +36,48 @@ const MainView = () => {
     }
   }, []);
 
+  const setUserOnLogin = (u) => {
+    setUser(u);
+  };
+  const setUserOnLogout = () => {
+    setUser(undefined);
+  };
+
+  const isInRegScreen = () => {
+    setInRegScreen(true);
+  };
+  const isOutOfRegScreen = () => {
+    setInRegScreen(false);
+  };
 
   return (
     <Router>
-      <Navbar user={user} />
+      <Navbar
+        user={user}
+        inRegScreen={inRegScreen}
+        isInRegScreen={isInRegScreen}
+      />
       <Routes>
-        <Route path="/" element={<LoginView />} />
+        <Route
+          path="/"
+          element={<LoginView setUserOnLogin={setUserOnLogin} />}
+        />
         <Route
           path="/registration"
-          element={<RegView />}
-        // element={user ? <Navigate to="/movies" /> : <RegView />}
+          element={<RegView isOutOfRegScreen={isOutOfRegScreen} />}
         />
-        <Route
-          path="/movies"
-          element={
-            <MovieCard />
-          }
-        />
-        <Route
-          path="/movies/:movieId"
-          element={<MovieView />}
-        />
+        <Route path="/movies" element={<MovieCard />} />
+        <Route path="/movies/:movieId" element={<MovieView />} />
         <Route
           path="/signout"
-          element={<Signout />}
+          element={<Signout setUserOnLogout={setUserOnLogout} />}
         />
         <Route path="/directors/:name" element={<Director />} />
         <Route path="/genres/:name" element={<Genre />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<Error />} />
       </Routes>
-    </Router >
+    </Router>
   );
 };
 export default MainView;

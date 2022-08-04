@@ -3,12 +3,13 @@ import { Form, Button, Alert, Stack } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const LoginView = () => {
+const LoginView = ({ setUserOnLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [usernameErr, setUsernameErr] = useState("");
   const [passwordErr, setPasswordErr] = useState("");
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     /* Send a request to the server for authentication */
@@ -27,9 +28,10 @@ const LoginView = () => {
           Password: password,
         })
         .then((response) => {
-          localStorage.setItem("token", response.data.token)
-          localStorage.setItem("user", response.data.user.Username)
-          navigate("/movies")
+          localStorage.setItem("token", response.data.token);
+          localStorage.setItem("user", response.data.user.Username);
+          setUserOnLogin(response.data.user);
+          navigate("/movies");
         })
         .catch((e) => {
           console.log("no such user");

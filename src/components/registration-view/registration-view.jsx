@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Form, Button, Alert, Stack } from "react-bootstrap";
 import axios from "axios";
 
-const RegistrationView = () => {
+const RegistrationView = ({ isOutOfRegScreen }) => {
   const [newUsername, setNewUsername] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newEmail, setNewEmail] = useState("");
@@ -41,7 +41,6 @@ const RegistrationView = () => {
           Birthday: newBirthday,
         })
         .then((response) => {
-          const data = response.data;
           setRegistratonSuccessful(true);
         })
         .catch((e) => {
@@ -53,7 +52,13 @@ const RegistrationView = () => {
   return registrationSuccessful ? (
     <>
       <Alert>Registration successful!</Alert>
-      <Button variant="link" onClick={() => navigate("/")}>
+      <Button
+        variant="link"
+        onClick={() => {
+          isOutOfRegScreen();
+          navigate("/");
+        }}
+      >
         Log in
       </Button>
     </>
@@ -105,7 +110,14 @@ const RegistrationView = () => {
         <Button type="submit" onClick={handleRegister}>
           Submit
         </Button>
-        <Button onClick={() => navigate("/")}>Go back</Button>
+        <Button
+          onClick={() => {
+            isOutOfRegScreen();
+            navigate("/");
+          }}
+        >
+          Go back
+        </Button>
       </Stack>
     </Form>
   );
