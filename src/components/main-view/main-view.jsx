@@ -58,6 +58,7 @@ const MainView = () => {
         isInRegScreen={isInRegScreen}
       />
       <Routes>
+        user ? (
         <Route
           path="/"
           element={<LoginView setUserOnLogin={setUserOnLogin} />}
@@ -66,6 +67,7 @@ const MainView = () => {
           path="/registration"
           element={<RegView isOutOfRegScreen={isOutOfRegScreen} />}
         />
+        ) : (
         <Route path="/movies" element={<MovieCard />} />
         <Route path="/movies/:movieId" element={<MovieView />} />
         <Route
@@ -75,6 +77,7 @@ const MainView = () => {
         <Route path="/directors/:name" element={<Director />} />
         <Route path="/genres/:name" element={<Genre />} />
         <Route path="/profile" element={<Profile />} />
+        )
         <Route path="*" element={<Error />} />
       </Routes>
     </Router>

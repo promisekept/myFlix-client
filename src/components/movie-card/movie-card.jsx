@@ -1,11 +1,12 @@
 import React, { useState, useEffect, Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container, Row, Col, Card, Button, Stack } from "react-bootstrap";
 import axios from "axios";
 
 const MovieCard = ({ loggedUser }) => {
   const [movies, setMovies] = useState([]);
   const [user, setUser] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("user")) {
       axios
@@ -21,7 +22,6 @@ const MovieCard = ({ loggedUser }) => {
     }
   }, []);
   useEffect(() => {
-    // !loggedUser && navigate("/");
     if (localStorage.getItem("user")) {
       const Username = localStorage.getItem("user");
       axios
@@ -38,6 +38,8 @@ const MovieCard = ({ loggedUser }) => {
         .catch(function (error) {
           console.log(error);
         });
+    } else {
+      navigate("/");
     }
   }, []);
 
