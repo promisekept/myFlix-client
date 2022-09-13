@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+// import {useSelector} from 'react-redux'
 
 import MovieCard from "../movie-card/movie-card";
 import MovieView from "../movie-view/movie-view";
@@ -16,6 +17,7 @@ import Profile from "../profile/profile";
 const MainView = () => {
   const [user, setUser] = useState();
   const [inRegScreen, setInRegScreen] = useState(false);
+  // const status = useSelector((state) => state.status)
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
